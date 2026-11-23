@@ -3,11 +3,8 @@ import random
 
 st.set_page_config(page_title="Flashcard Study App", layout="centered")
 
-# 1. ADD YOUR STUDY UNITS BELOW
-# Add each written word once under "entries". List its key under "vocab" if
-# it belongs in vocabulary practice. "kanji" lists focus characters; the app
-# finds every entry containing one of those characters automatically.
-
+#add ALL terms in entries, then copy all vocab terms into vocab. don't copy terms that only appear in the kanji study section there
+#only add the kanji to kanji list, the thing will auto search for entries that contain them
 unit_1 = {
     "entries": {
         "小学校": {"reading": ["しょうがっこう"], "meaning": "Elementary school"},
@@ -347,7 +344,7 @@ STUDY_UNITS = {
     "Index": index,
 }
 
-# Units can be included in either category, or both, through their internal lists.
+# really shouldn't need to touch this, just establishes what's vocab and what's kanji
 STUDY_CATEGORIES = {
     "Vocabulary": {
         name: unit
@@ -361,7 +358,7 @@ STUDY_CATEGORIES = {
     },
 }
 
-# APP LOGIC
+#boring stuff i honestly don't super understand; makes the thing do the thing
 if "stage" not in st.session_state:
     st.session_state.stage = "setup"
 
@@ -532,7 +529,6 @@ if st.session_state.stage == "setup":
                 start_quiz(deck, direction)
                 st.rerun()
 
-# QUIZ SCREEN
 elif st.session_state.stage == "quiz":
     current = st.session_state.current
     correct_answers = st.session_state.deck[current]
@@ -592,7 +588,6 @@ elif st.session_state.stage == "quiz":
             next_word()
             st.rerun()
 
-# FINISHED SCREEN
 elif st.session_state.stage == "finished":
     st.title("Session complete")
     if st.session_state.completed_all:
