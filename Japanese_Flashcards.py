@@ -1,4 +1,4 @@
-import streamlit as st
+\import streamlit as st
 import random
 
 st.set_page_config(page_title="Flashcard Study App", layout="centered")
@@ -365,19 +365,27 @@ STUDY_CATEGORIES = {
 if "stage" not in st.session_state:
     st.session_state.stage = "setup"
 
+def split_answers(text):
+    return [
+        part.strip()
+        for part in text.replace(",", ";").split(";")
+        if part.strip()
+    ]
+
 def build_vocabulary_deck(entries, entry_keys, direction):
     deck = {}
     if direction == "ENG to JPN":
         for written in entry_keys:
             entry = entries[written]
-            accepted = entry["reading"] + [written]
+            accepted = [
+                answer
+                for reading in entry["reading"]
+                for answer in split_answers(reading)
+            ] + [written]
             deck[entry["meaning"]] = list(dict.fromkeys(accepted))
     else:
         for written in entry_keys:
-            meanings = [
-                part.strip().lower()
-                for part in entries[written]["meaning"].split(";")
-            ]
+            meanings = [part.lower() for part in split_answers(entries[written]["meaning"])]
             deck[written] = list(dict.fromkeys(meanings))
     return deck
 
@@ -387,12 +395,13 @@ def build_kanji_deck(entries, focus_kanji, mode):
         if not any(kanji in written for kanji in focus_kanji):
             continue
         if mode == "Reading":
-            accepted = entry["reading"]
-        else:
             accepted = [
-                part.strip().lower()
-                for part in entry["meaning"].split(";")
+                answer
+                for reading in entry["reading"]
+                for answer in split_answers(reading)
             ]
+        else:
+            accepted = [part.lower() for part in split_answers(entry["meaning"])]
         deck[written] = list(dict.fromkeys(accepted))
     return deck
 
