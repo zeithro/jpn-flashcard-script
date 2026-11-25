@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import random
 
 st.set_page_config(page_title="Flashcard Study App", layout="centered")
@@ -792,8 +793,8 @@ elif st.session_state.stage == "quiz":
     st.subheader(f"{st.session_state.direction}: {display_prompt}")
 
     if not st.session_state.waiting_next:
-        with st.form(key=f"form_{words_done}", clear_on_submit=True):
-            guess = st.text_input("Your answer:", key=f"input_{words_done}").strip()
+        with st.form(key=f"form_{words_done}_{st.session_state.attempts}", clear_on_submit=True):
+            guess = st.text_input("Your answer:", key=f"input_{words_done}_{st.session_state.attempts}").strip()
             col1, col2 = st.columns(2)
             with col1:
                 submitted = st.form_submit_button("Submit", type="primary", use_container_width=True)
@@ -833,14 +834,54 @@ elif st.session_state.stage == "quiz":
         elif st.session_state.feedback_type == "error":
             st.error(st.session_state.feedback)
 
-        with st.form(key=f"form_{words_done}", clear_on_submit=True):
-            st.text_input(
-                "Press Enter to continue, or click Next:",
-                key=f"input_{words_done}"
-            )
-            if st.form_submit_button("Next", type="primary", use_container_width=True):
-                next_word()
-                st.rerun()
+        st.caption("Press Enter to continue, or click Next.")
+        if st.button("Next", type="primary", use_container_width=True):
+            next_word()
+            st.rerun()
+
+        components.html(
+            """
+            <script>
+            (function() {
+                const parentWindow = window.parent;
+                const parentDocument = parentWindow.document;
+
+                if (parentWindow.__flashcardEnterNextHandler) {
+                    parentDocument.removeEventListener(
+                        "keydown",
+                        parentWindow.__flashcardEnterNextHandler,
+                        true
+                    );
+                }
+
+                parentWindow.__flashcardEnterNextHandler = function(event) {
+                    if (event.key !== "Enter" || event.repeat || event.isComposing) return;
+
+                    const active = parentDocument.activeElement;
+                    const tag = active ? active.tagName.toLowerCase() : "";
+                    if (tag === "input" || tag === "textarea") return;
+
+                    const nextButton = Array.from(
+                        parentDocument.querySelectorAll("button")
+                    ).find((button) => button.innerText.trim() === "Next" && !button.disabled);
+
+                    if (!nextButton) return;
+
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    nextButton.click();
+                };
+
+                parentDocument.addEventListener(
+                    "keydown",
+                    parentWindow.__flashcardEnterNextHandler,
+                    true
+                );
+            })();
+            </script>
+            """,
+            height=0,
+        )
 
 elif st.session_state.stage == "finished":
     st.title("Session complete")
