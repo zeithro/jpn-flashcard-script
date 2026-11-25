@@ -36,447 +36,8 @@ DD_KANJI_BY_UNIT = {
 
 ALL_ND2_KANJI = [k for chars in ND2_KANJI_BY_UNIT.values() for k in chars]
 
-dd_unit_1 = {
-    # allowed kanji: all of nd2 + dd unit 1
-    "allowed_kanji": set(ALL_ND2_KANJI + DD_KANJI_BY_UNIT["1"]),
-    "entries": {
-        #Nouns
-        "小学校": {"reading": ["しょうがっこう"], "meaning": "Elementary school", "kana_pieces": ["しょう", "がっ", "こう"]},
-        "幼稚園": {"reading": ["ようちえん"], "meaning": "Kindergarten", "kana_pieces": ["よう", "ち", "えん"]},
-        "〜年間": {"reading": ["~ねんかん; ねんかん"], "meaning": "For ~years", "kana_pieces": ["〜", "ねん", "かん"]},
-        "中学校": {"reading": ["ちゅうがっこう"], "meaning": "Middle school", "kana_pieces": ["ちゅう", "がっ", "こう"]},
-        "高校": {"reading": ["こうこう"], "meaning": "High school", "kana_pieces": ["こう", "こう"]},
-        "教育": {"reading": ["きょういく"], "meaning": "Education", "kana_pieces": ["きょう", "いく"]},
-        "義務教育": {"reading": ["ぎむきょういく"], "meaning": "Compulsory education", "kana_pieces": ["ぎ", "む", "きょう", "いく"]},
-        "試験": {"reading": ["しけん"], "meaning": "Exam", "kana_pieces": ["し", "けん"]},
-        "外": {"reading": ["そと"], "meaning": "Outside", "kana_pieces": ["そと"]},
-        "家事": {"reading": ["かじ"], "meaning": "Housework", "kana_pieces": ["か", "じ"]},
-        "ピアノ": {"reading": ["ピアノ; ぴあの"], "meaning": "Piano"},
-        "夜遅く": {"reading": ["よるおそく"], "meaning": "Late night", "kana_pieces": ["よる", "おそ", "く"]},
-        "漫画": {"reading": ["まんが"], "meaning": "Manga; Cartoon; Comic", "kana_pieces": ["まん", "が"]},
-        "インターネット": {"reading": ["インターネット; いんたーねっと"], "meaning": "Internet"},
-        "先輩": {"reading": ["せんぱい"], "meaning": "One's senior", "kana_pieces": ["せん", "ぱい"]},
-        "勇気": {"reading": ["ゆうき"], "meaning": "Courage", "kana_pieces": ["ゆう", "き"]},
-        "情熱": {"reading": ["じょうねつ"], "meaning": "Passion", "kana_pieces": ["じょう", "ねつ"]},
-        "心": {"reading": ["こころ"], "meaning": "Heart", "kana_pieces": ["こころ"]},
-        "授業": {"reading": ["じゅぎょう"], "meaning": "Class", "kana_pieces": ["じゅ", "ぎょう"]},
-        "夢": {"reading": ["ゆめ"], "meaning": "Dream", "kana_pieces": ["ゆめ"]},
-        "外国": {"reading": ["がいこく"], "meaning": "Foreign country", "kana_pieces": ["がい", "こく"]},
-        "宿題": {"reading": ["しゅくだい"], "meaning": "Homework", "kana_pieces": ["しゅく", "だい"]},
-        "心の優しい人": {"reading": ["こころのやさしいひと"], "meaning": "Gentle-hearted person", "kana_pieces": ["こころ", "の", "やさ", "し", "い", "ひと"]},
-        "鬼": {"reading": ["おに"], "meaning": "Demon", "kana_pieces": ["おに"]},
-        "赤鬼": {"reading": ["あかおに"], "meaning": "Red demon", "kana_pieces": ["あか", "おに"]},
-        "青鬼": {"reading": ["あおおに"], "meaning": "Blue demon", "kana_pieces": ["あお", "おに"]},
-        "人生": {"reading": ["じんせい"], "meaning": "One's life", "kana_pieces": ["じん", "せい"]},
-        "村": {"reading": ["むら"], "meaning": "Village", "kana_pieces": ["むら"]},
-        "人間": {"reading": ["にんげん"], "meaning": "Human beings", "kana_pieces": ["にん", "げん"]},
-        "看板": {"reading": ["かんばん"], "meaning": "Sign", "kana_pieces": ["かん", "ばん"]},
-        "アイデア": {"reading": ["アイデア; あいであ"], "meaning": "Idea"},
-        "手紙": {"reading": ["てがみ"], "meaning": "Letter", "kana_pieces": ["て", "がみ"]},
-        "遠く": {"reading": ["とおく"], "meaning": "Far", "kana_pieces": ["とお", "く"]},
-        "話": {"reading": ["はなし"], "meaning": "Story; Talk", "kana_pieces": ["はなし"]},
-        "問題": {"reading": ["もんだい"], "meaning": "Problem", "kana_pieces": ["もん", "だい"]},
-        "家": {"reading": ["いえ"], "meaning": "House", "kana_pieces": ["いえ"]},
-        "ギリギリス": {"reading": ["ギリギリス; ぎりぎりす"], "meaning": "Grasshopper"},
-        "食べ物": {"reading": ["たべもの"], "meaning": "Food", "kana_pieces": ["た", "べ", "もの"]},
-        "飲み物": {"reading": ["のみもの"], "meaning": "Drink; Beverage", "kana_pieces": ["の", "み", "もの"]},
-        "アリ": {"reading": ["アリ; あり"], "meaning": "Ant"},
-        "明かり": {"reading": ["あかり"], "meaning": "Light", "kana_pieces": ["あ", "か", "り"]},
-        #Verbs
-        "降りる": {"reading": ["おりる"], "meaning": "Get off", "kana_pieces": ["お", "り", "る"]},
-        "着く": {"reading": ["つく"], "meaning": "Arrive", "kana_pieces": ["つ", "く"]},
-        "出る": {"reading": ["でる"], "meaning": "Get out; Leave", "kana_pieces": ["で", "る"]},
-        "決める": {"reading": ["きめる"], "meaning": "Decide", "kana_pieces": ["き", "め", "る"]},
-        "習う": {"reading": ["ならう"], "meaning": "Learn", "kana_pieces": ["なら", "う"]},
-        "世話をする": {"reading": ["せわをする"], "meaning": "Take care; Look after", "kana_pieces": ["せ", "わ", "を", "す", "る"]},
-        "ペットを飼う": {"reading": ["ペットをかう; ぺっとをかう"], "meaning": "Have a pet", "kana_pieces": ["ペ", "ッ", "ト", "を", "か", "う"]},
-        "泊まる": {"reading": ["とまる"], "meaning": "Stay over (night)", "kana_pieces": ["と", "ま", "る"]},
-        "呉れる": {"reading": ["くれる"], "meaning": "Give (me)", "kana_pieces": ["く", "れ", "る"]},
-        "奢る": {"reading": ["おごる"], "meaning": "Treat (someone)", "kana_pieces": ["おご", "る"]},
-        "連れて行く": {"reading": ["つれていく"], "meaning": "Take (someone)", "kana_pieces": ["つ", "れ", "て", "い", "く"]},
-        "おしゃれをする": {"reading": ["おしゃれをする"], "meaning": "Dress up"},
-        "サボる": {"reading": ["サボる; さぼる"], "meaning": "Skip (a class)"},
-        "持つ": {"reading": ["もつ"], "meaning": "Hold; Have", "kana_pieces": ["も", "つ"]},
-        "諦める": {"reading": ["あきらめる"], "meaning": "Give up", "kana_pieces": ["あきら", "め", "る"]},
-        "困る": {"reading": ["こまる"], "meaning": "Be in need; In trouble", "kana_pieces": ["こま", "る"]},
-        "考える": {"reading": ["かんがえる"], "meaning": "Think; Consider", "kana_pieces": ["かんが", "え", "る"]},
-        "壊す": {"reading": ["こわす"], "meaning": "Break", "kana_pieces": ["こわ", "す"]},
-        "オイオイ泣く": {"reading": ["オイオイなく; おいおいなく"], "meaning": "Cry one's heart out", "kana_pieces": ["オ", "イ", "オ", "イ", "な", "く"]},
-        "笑う": {"reading": ["わらう"], "meaning": "Laugh", "kana_pieces": ["わら", "う"]},
-        "働く": {"reading": ["はたらく"], "meaning": "Work", "kana_pieces": ["はたら", "く"]},
-        "バイオリンを弾く": {"reading": ["バイオリンをひく; ばいおりんをひく"], "meaning": "Play a violin", "kana_pieces": ["バ", "イ", "オ", "リ", "ン", "を", "ひ", "く"]},
-        "答える": {"reading": ["こたえる"], "meaning": "Answer", "kana_pieces": ["こた", "え", "る"]},
-        "始まる": {"reading": ["はじまる"], "meaning": "(It) starts; begins", "kana_pieces": ["はじ", "ま", "る"]},
-        "探す": {"reading": ["さがす"], "meaning": "Look for; Search", "kana_pieces": ["さが", "す"]},
-        "点く": {"reading": ["つく"], "meaning": "(Lights) turn on", "kana_pieces": ["つ", "く"]},
-        #Adjectives
-        "シャイ": {"reading": ["シャイ"], "meaning": "Shy"},
-        "悪戯": {"reading": ["いたずら"], "meaning": "Mischievous", "kana_pieces": ["いた", "ずら"]},
-        "得意": {"reading": ["とくい"], "meaning": "Good at", "kana_pieces": ["とく", "い"]},
-        "悪い": {"reading": ["わるい"], "meaning": "Bad", "kana_pieces": ["わる", "い"]},
-        "悲しい": {"reading": ["かなしい"], "meaning": "Sad", "kana_pieces": ["かな", "し", "い"]},
-        "正しい": {"reading": ["ただしい"], "meaning": "Correct", "kana_pieces": ["ただ", "し", "い"]},
-        "自分で": {"reading": ["じぶんで"], "meaning": "By oneself", "kana_pieces": ["じ", "ぶん", "で"]},
-        "一生懸命": {"reading": ["いっしょうけんめい"], "meaning": "Very hard", "kana_pieces": ["いっ", "しょう", "けん", "めい"]},
-        #Conjunctions
-        "然し": {"reading": ["しかし"], "meaning": "However; But", "kana_pieces": ["しか", "し"]},
-        #Expressions
-        "夢を持つこと": {"reading": ["ゆめをもつこと"], "meaning": "Having one's dreams", "kana_pieces": ["ゆめ", "を", "も", "つ", "こ", "と"]},
-        "諦めないこと": {"reading": ["あきらめないこと"], "meaning": "Not giving up", "kana_pieces": ["あきら", "め", "な", "い", "こ", "と"]},
-        "ある山": {"reading": ["あるやま"], "meaning": "A certain mountain", "kana_pieces": ["あ", "る", "やま"]},
-        "お腹がペコペコです": {"reading": ["おなかがペコペコです; おなかがぺこぺこです"], "meaning": "I'm starving", "kana_pieces": ["お", "なか", "が", "ペ", "コ", "ペ", "コ", "で", "す"]},
-        #Kanji terms
-        "教える": {"reading": ["おしえる"], "meaning": "To teach; To tell", "kana_pieces": ["おし", "え", "る"]},
-        "仕事": {"reading": ["しごと"], "meaning": "Job; Occupation", "kana_pieces": ["し", "ごと"]},
-        "火事": {"reading": ["かじ"], "meaning": "Fire", "kana_pieces": ["か", "じ"]},
-        "事故": {"reading": ["じこ"], "meaning": "Accident", "kana_pieces": ["じ", "こ"]},
-        "作る": {"reading": ["つくる"], "meaning": "To make", "kana_pieces": ["つく", "る"]},
-        "作り方": {"reading": ["つくりかた"], "meaning": "How to make", "kana_pieces": ["つく", "り", "かた"]},
-        "家族": {"reading": ["かぞく"], "meaning": "Family", "kana_pieces": ["か", "ぞく"]},
-        "使う": {"reading": ["つかう"], "meaning": "To use", "kana_pieces": ["つか", "う"]},
-        "大使館": {"reading": ["たいしかん"], "meaning": "Embassy", "kana_pieces": ["たい", "し", "かん"]},
-        "心配する": {"reading": ["しんぱいする"], "meaning": "To worry", "kana_pieces": ["しん", "ぱい", "す", "る"]},
-        "中心": {"reading": ["ちゅうしん"], "meaning": "Center", "kana_pieces": ["ちゅう", "しん"]},
-        "安心する": {"reading": ["あんしんする"], "meaning": "To be relieved", "kana_pieces": ["あん", "しん", "す", "る"]},
-        "食べ方": {"reading": ["たべかた"], "meaning": "How to eat", "kana_pieces": ["た", "べ", "かた"]},
-        "言い方": {"reading": ["いいかた"], "meaning": "How to say", "kana_pieces": ["い", "い", "かた"]},
-        "手": {"reading": ["て"], "meaning": "Hand", "kana_pieces": ["て"]},
-        "手伝う": {"reading": ["てつだう"], "meaning": "To help", "kana_pieces": ["て", "つだ", "う"]},
-        "上手": {"reading": ["じょうず"], "meaning": "Good at", "kana_pieces": ["じょう", "ず"]},
-        "持ってくる": {"reading": ["もってくる"], "meaning": "To bring", "kana_pieces": ["も", "っ", "て", "く", "る"]},
-        "気持ち": {"reading": ["きもち"], "meaning": "Feeling", "kana_pieces": ["き", "も", "ち"]},
-        "お金持ち": {"reading": ["おかねもち"], "meaning": "Rich person", "kana_pieces": ["お", "かね", "もち"]},
-        "山": {"reading": ["やま"], "meaning": "Mountain", "kana_pieces": ["やま"]},
-        "富士山": {"reading": ["ふじさん"], "meaning": "Mt. Fuji", "kana_pieces": ["ふ", "じ", "さん"]},
-        "明るい": {"reading": ["あかるい"], "meaning": "Bright; Cheerful", "kana_pieces": ["あか", "る", "い"]},
-        "明日": {"reading": ["あした"], "meaning": "Tomorrow", "kana_pieces": ["あ", "した"]},
-        "発明する": {"reading": ["はつめいする"], "meaning": "To invent", "kana_pieces": ["はつ", "めい", "す", "る"]},
-        "明治時代": {"reading": ["めいじじだい"], "meaning": "Meiji Era", "kana_pieces": ["めい", "じ", "じ", "だい"]},
-    },
-    "vocab": [
-        "小学校",
-        "幼稚園",
-        "〜年間",
-        "中学校",
-        "高校",
-        "教育",
-        "義務教育",
-        "試験",
-        "外",
-        "家事",
-        "ピアノ",
-        "夜遅く",
-        "漫画",
-        "インターネット",
-        "先輩",
-        "勇気",
-        "情熱",
-        "心",
-        "授業",
-        "夢",
-        "外国",
-        "宿題",
-        "心の優しい人",
-        "鬼",
-        "赤鬼",
-        "青鬼",
-        "人生",
-        "村",
-        "人間",
-        "看板",
-        "アイデア",
-        "手紙",
-        "遠く",
-        "話",
-        "問題",
-        "家",
-        "ギリギリス",
-        "食べ物",
-        "飲み物",
-        "アリ",
-        "明かり",
-        "降りる",
-        "着く",
-        "出る",
-        "決める",
-        "習う",
-        "世話をする",
-        "ペットを飼う",
-        "泊まる",
-        "呉れる",
-        "奢る",
-        "連れて行く",
-        "おしゃれをする",
-        "サボる",
-        "持つ",
-        "諦める",
-        "困る",
-        "考える",
-        "壊す",
-        "オイオイ泣く",
-        "笑う",
-        "働く",
-        "バイオリンを弾く",
-        "答える",
-        "始まる",
-        "探す",
-        "点く",
-        "シャイ",
-        "悪戯",
-        "得意",
-        "悪い",
-        "悲しい",
-        "正しい",
-        "自分で",
-        "一生懸命",
-        "然し",
-        "夢を持つこと",
-        "諦めないこと",
-        "ある山",
-        "お腹がペコペコです",
-    ],
-    "kanji": ["教", "事", "作", "仕", "家", "使"],
-}
-
-dd_unit_2 = {
-    "allowed_kanji": set(ALL_ND2_KANJI + DD_KANJI_BY_UNIT["1"] + DD_KANJI_BY_UNIT["2"]),
-    "entries": {
-        "ENTRY_01": {"reading": [""], "meaning": ""},
-        "ENTRY_02": {"reading": [""], "meaning": ""},
-        "ENTRY_03": {"reading": [""], "meaning": ""},
-        "ENTRY_04": {"reading": [""], "meaning": ""},
-        "ENTRY_05": {"reading": [""], "meaning": ""},
-        "ENTRY_06": {"reading": [""], "meaning": ""},
-        "ENTRY_07": {"reading": [""], "meaning": ""},
-        "ENTRY_08": {"reading": [""], "meaning": ""},
-        "ENTRY_09": {"reading": [""], "meaning": ""},
-        "ENTRY_10": {"reading": [""], "meaning": ""},
-        "ENTRY_11": {"reading": [""], "meaning": ""},
-        "ENTRY_12": {"reading": [""], "meaning": ""},
-        "ENTRY_13": {"reading": [""], "meaning": ""},
-        "ENTRY_14": {"reading": [""], "meaning": ""},
-        "ENTRY_15": {"reading": [""], "meaning": ""},
-        "ENTRY_16": {"reading": [""], "meaning": ""},
-        "ENTRY_17": {"reading": [""], "meaning": ""},
-        "ENTRY_18": {"reading": [""], "meaning": ""},
-        "ENTRY_19": {"reading": [""], "meaning": ""},
-        "ENTRY_20": {"reading": [""], "meaning": ""},
-    },
-    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    "kanji": ["", "", "", "", "", ""],
-}
-
-dd_unit_3 = {
-    "allowed_kanji": set(ALL_ND2_KANJI + DD_KANJI_BY_UNIT["1"] + DD_KANJI_BY_UNIT["2"] + DD_KANJI_BY_UNIT["3"]),
-    "entries": {
-        "ENTRY_01": {"reading": [""], "meaning": ""},
-        "ENTRY_02": {"reading": [""], "meaning": ""},
-        "ENTRY_03": {"reading": [""], "meaning": ""},
-        "ENTRY_04": {"reading": [""], "meaning": ""},
-        "ENTRY_05": {"reading": [""], "meaning": ""},
-        "ENTRY_06": {"reading": [""], "meaning": ""},
-        "ENTRY_07": {"reading": [""], "meaning": ""},
-        "ENTRY_08": {"reading": [""], "meaning": ""},
-        "ENTRY_09": {"reading": [""], "meaning": ""},
-        "ENTRY_10": {"reading": [""], "meaning": ""},
-        "ENTRY_11": {"reading": [""], "meaning": ""},
-        "ENTRY_12": {"reading": [""], "meaning": ""},
-        "ENTRY_13": {"reading": [""], "meaning": ""},
-        "ENTRY_14": {"reading": [""], "meaning": ""},
-        "ENTRY_15": {"reading": [""], "meaning": ""},
-        "ENTRY_16": {"reading": [""], "meaning": ""},
-        "ENTRY_17": {"reading": [""], "meaning": ""},
-        "ENTRY_18": {"reading": [""], "meaning": ""},
-        "ENTRY_19": {"reading": [""], "meaning": ""},
-        "ENTRY_20": {"reading": [""], "meaning": ""},
-    },
-    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    "kanji": ["", "", "", "", "", ""],
-}
-
-dd_unit_4 = {
-    "allowed_kanji": set(ALL_ND2_KANJI + DD_KANJI_BY_UNIT["1"] + DD_KANJI_BY_UNIT["2"] + DD_KANJI_BY_UNIT["3"] + DD_KANJI_BY_UNIT["4"]),
-    "entries": {
-        "ENTRY_01": {"reading": [""], "meaning": ""},
-        "ENTRY_02": {"reading": [""], "meaning": ""},
-        "ENTRY_03": {"reading": [""], "meaning": ""},
-        "ENTRY_04": {"reading": [""], "meaning": ""},
-        "ENTRY_05": {"reading": [""], "meaning": ""},
-        "ENTRY_06": {"reading": [""], "meaning": ""},
-        "ENTRY_07": {"reading": [""], "meaning": ""},
-        "ENTRY_08": {"reading": [""], "meaning": ""},
-        "ENTRY_09": {"reading": [""], "meaning": ""},
-        "ENTRY_10": {"reading": [""], "meaning": ""},
-        "ENTRY_11": {"reading": [""], "meaning": ""},
-        "ENTRY_12": {"reading": [""], "meaning": ""},
-        "ENTRY_13": {"reading": [""], "meaning": ""},
-        "ENTRY_14": {"reading": [""], "meaning": ""},
-        "ENTRY_15": {"reading": [""], "meaning": ""},
-        "ENTRY_16": {"reading": [""], "meaning": ""},
-        "ENTRY_17": {"reading": [""], "meaning": ""},
-        "ENTRY_18": {"reading": [""], "meaning": ""},
-        "ENTRY_19": {"reading": [""], "meaning": ""},
-        "ENTRY_20": {"reading": [""], "meaning": ""},
-    },
-    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    "kanji": ["", "", "", "", "", ""],
-}
-
-dd_unit_5 = {
-    "allowed_kanji": set(ALL_ND2_KANJI + [k for chars in DD_KANJI_BY_UNIT.values() for k in chars]),
-    "entries": {
-        "ENTRY_01": {"reading": [""], "meaning": ""},
-        "ENTRY_02": {"reading": [""], "meaning": ""},
-        "ENTRY_03": {"reading": [""], "meaning": ""},
-        "ENTRY_04": {"reading": [""], "meaning": ""},
-        "ENTRY_05": {"reading": [""], "meaning": ""},
-        "ENTRY_06": {"reading": [""], "meaning": ""},
-        "ENTRY_07": {"reading": [""], "meaning": ""},
-        "ENTRY_08": {"reading": [""], "meaning": ""},
-        "ENTRY_09": {"reading": [""], "meaning": ""},
-        "ENTRY_10": {"reading": [""], "meaning": ""},
-        "ENTRY_11": {"reading": [""], "meaning": ""},
-        "ENTRY_12": {"reading": [""], "meaning": ""},
-        "ENTRY_13": {"reading": [""], "meaning": ""},
-        "ENTRY_14": {"reading": [""], "meaning": ""},
-        "ENTRY_15": {"reading": [""], "meaning": ""},
-        "ENTRY_16": {"reading": [""], "meaning": ""},
-        "ENTRY_17": {"reading": [""], "meaning": ""},
-        "ENTRY_18": {"reading": [""], "meaning": ""},
-        "ENTRY_19": {"reading": [""], "meaning": ""},
-        "ENTRY_20": {"reading": [""], "meaning": ""},
-    },
-    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    "kanji": ["", "", "", "", "", ""],
-}
-
-nd_unit_13 = {
-    #allowed kanji: nd2 はじめに + unit 13
-    "allowed_kanji": set(ND2_KANJI_BY_UNIT["はじめに"] + ND2_KANJI_BY_UNIT["13"]),
-    "entries": {
-        # Verbs
-        "怠け者": {"reading": ["なまけもの"], "meaning": "Lazy; idle person", "kana_pieces": ["なま", "け", "もの"]},
-        "泳ぐ": {"reading": ["およぐ"], "meaning": "Swim", "kana_pieces": ["およ", "ぐ"]},
-        "遊ぶ": {"reading": ["あそぶ"], "meaning": "Play", "kana_pieces": ["あそ", "ぶ"]},
-        "待つ": {"reading": ["まつ"], "meaning": "Wait", "kana_pieces": ["ま", "つ"]},
-        "貰う": {"reading": ["もらう"], "meaning": "Get; receive", "kana_pieces": ["もら", "う"]},
-        "話す": {"reading": ["はなす"], "meaning": "Speak", "kana_pieces": ["はな", "す"]},
-        "上げる": {"reading": ["あげる"], "meaning": "Give", "kana_pieces": ["あ", "げ", "る"]},
-        # Adjectives
-        "大好き": {"reading": ["だいすき"], "meaning": "Love", "kana_pieces": ["だい", "すき"]},
-        "好き": {"reading": ["すき"], "meaning": "Like", "kana_pieces": ["すき"]},
-        "まあまあ": {"reading": ["まあまあ"], "meaning": "Fairly; so-so"},
-        "駄目": {"reading": ["だめ"], "meaning": "Cannot stand; no way", "kana_pieces": ["だ", "め"]},
-        "上手": {"reading": ["じょうず"], "meaning": "Be good at; skillful", "kana_pieces": ["じょう", "ず"]},
-        "明るい": {"reading": ["あかるい"], "meaning": "Cheerful", "kana_pieces": ["あか", "る", "い"]},
-        "面白い": {"reading": ["おもしろい"], "meaning": "Humorous; funny", "kana_pieces": ["おも", "しろ", "い"]},
-        "頭がいい": {"reading": ["あたまがいい"], "meaning": "Smart; clever", "kana_pieces": ["あたま", "が", "い", "い"]},
-        "厳しい": {"reading": ["きびしい"], "meaning": "Strict", "kana_pieces": ["きび", "し", "い"]},
-        "真面目": {"reading": ["まじめ"], "meaning": "Serious; earnest", "kana_pieces": ["ま", "じ", "め"]},
-        "親切": {"reading": ["しんせつ"], "meaning": "Kind; helpful", "kana_pieces": ["しん", "せつ"]},
-        "フレンドリー": {"reading": ["フレンドリー; ふれんどりー"], "meaning": "Friendly"},
-        "冷静": {"reading": ["れいせい"], "meaning": "Calm; cool-headed", "kana_pieces": ["れい", "せい"]},
-        "ハンサム": {"reading": ["ハンサム; はんさむ"], "meaning": "Handsome"},
-        # Nouns
-        "相撲": {"reading": ["すもう"], "meaning": "Sumo", "kana_pieces": ["す", "もう"]},
-        "プール": {"reading": ["プール; ぷーる"], "meaning": "Swimming pool"},
-        "ピンポン": {"reading": ["ピンポン; ぴんぽん"], "meaning": "Table tennis"},
-        "旅行": {"reading": ["りょこう"], "meaning": "Travel; trip [-suru]", "kana_pieces": ["りょ", "こう"]},
-        "温泉": {"reading": ["おんせん"], "meaning": "Hot spring", "kana_pieces": ["おん", "せん"]},
-        "アクション": {"reading": ["アクション; あくしょん"], "meaning": "Action"},
-        "コメディー": {"reading": ["コメディー; こめでぃー"], "meaning": "Comedy"},
-        "ホラー": {"reading": ["ホラー; ほらー"], "meaning": "Horror"},
-        "SF": {"reading": ["SF; えすえふ"], "meaning": "Science fiction"},
-        "アニメ": {"reading": ["アニメ; あにめ"], "meaning": "Animation"},
-        "ラブストーリー": {"reading": ["ラブストーリー; らぶすとーりー"], "meaning": "Love story"},
-        "スポーツ": {"reading": ["スポーツ; すぽーつ"], "meaning": "Sport"},
-        "サッカー": {"reading": ["サッカー; さっかー"], "meaning": "Soccer"},
-        "絵": {"reading": ["え"], "meaning": "Painting; drawing; picture", "kana_pieces": ["え"]},
-        "恋人": {"reading": ["こいびと"], "meaning": "Lover", "kana_pieces": ["こい", "びと"]},
-        "子ども": {"reading": ["こども"], "meaning": "Child", "kana_pieces": ["こ", "ども"]},
-        "料理": {"reading": ["りょうり"], "meaning": "Food; dishes; cooking [-suru]", "kana_pieces": ["りょう", "り"]},
-        "カフェ": {"reading": ["カフェ; かふぇ"], "meaning": "Café"},
-        # Adverbs
-        "結構": {"reading": ["けっこう"], "meaning": "Quite", "kana_pieces": ["けっ", "こう"]},
-        "何時でも": {"reading": ["いつも"], "meaning": "Always", "kana_pieces": ["いつ", "で", "も"]},
-        #expressions excluded because they often contain symbols that are difficult to match during testing
-    },
-    "vocab": [
-        "怠け者",
-        "泳ぐ",
-        "遊ぶ",
-        "待つ",
-        "貰う",
-        "話す",
-        "上げる",
-        "大好き",
-        "好き",
-        "まあまあ",
-        "駄目",
-        "上手",
-        "明るい",
-        "面白い",
-        "頭がいい",
-        "厳しい",
-        "真面目",
-        "親切",
-        "フレンドリー",
-        "冷静",
-        "ハンサム",
-        "相撲",
-        "プール",
-        "ピンポン",
-        "旅行",
-        "温泉",
-        "アクション",
-        "コメディー",
-        "ホラー",
-        "SF",
-        "アニメ",
-        "ラブストーリー",
-        "スポーツ",
-        "サッカー",
-        "絵",
-        "恋人",
-        "子ども",
-        "料理",
-        "カフェ",
-        "結構",
-        "何時でも",
-    ],
-    "kanji": ["子", "好", "本", "人", "大", "休"],
-}
-
-index = {
-    "allowed_kanji": set(ALL_ND2_KANJI + [k for chars in DD_KANJI_BY_UNIT.values() for k in chars]),
-    "entries": {
-        "ENTRY_01": {"reading": [""], "meaning": ""},
-        "ENTRY_02": {"reading": [""], "meaning": ""},
-        "ENTRY_03": {"reading": [""], "meaning": ""},
-        "ENTRY_04": {"reading": [""], "meaning": ""},
-        "ENTRY_05": {"reading": [""], "meaning": ""},
-        "ENTRY_06": {"reading": [""], "meaning": ""},
-        "ENTRY_07": {"reading": [""], "meaning": ""},
-        "ENTRY_08": {"reading": [""], "meaning": ""},
-        "ENTRY_09": {"reading": [""], "meaning": ""},
-        "ENTRY_10": {"reading": [""], "meaning": ""},
-        "ENTRY_11": {"reading": [""], "meaning": ""},
-        "ENTRY_12": {"reading": [""], "meaning": ""},
-        "ENTRY_13": {"reading": [""], "meaning": ""},
-        "ENTRY_14": {"reading": [""], "meaning": ""},
-        "ENTRY_15": {"reading": [""], "meaning": ""},
-        "ENTRY_16": {"reading": [""], "meaning": ""},
-        "ENTRY_17": {"reading": [""], "meaning": ""},
-        "ENTRY_18": {"reading": [""], "meaning": ""},
-        "ENTRY_19": {"reading": [""], "meaning": ""},
-        "ENTRY_20": {"reading": [""], "meaning": ""},
-    },
-    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    "kanji": ["", "", "", "", "", ""],
-}
-
 jlpt_n5 = {
-    "kanji_only": True,
+    "allowed_kanji": set(),
     "entries": {
         # 人
         "人": {"reading": ["ひと; じん"], "meaning": "Person"},
@@ -859,7 +420,7 @@ jlpt_n5 = {
 }
 
 jlpt_n4 = {
-    "kanji_only": True,
+    "allowed_kanji": set(),
     "entries": {},
     "vocab": [],
     "kanji": [
@@ -885,29 +446,531 @@ jlpt_n4 = {
     ],
 }
 
+jlpt_n3 = {
+    "allowed_kanji": set(),
+    "entries": {},
+    "vocab": [],
+    "kanji": [],
+}
+
+jlpt_n2 = {
+    "allowed_kanji": set(),
+    "entries": {},
+    "vocab": [],
+    "kanji": [],
+}
+
+jlpt_n1 = {
+    "allowed_kanji": set(),
+    "entries": {},
+    "vocab": [],
+    "kanji": [],
+}
+
+nd_hajimeni = {
+    "allowed_kanji": set(ND2_KANJI_BY_UNIT["はじめに"]),
+    "entries": {},
+    "vocab": [],
+    "kanji": list(ND2_KANJI_BY_UNIT["はじめに"]),
+}
+
+nd_unit_13 = {
+    #allowed kanji: nd2 はじめに + unit 13
+    "allowed_kanji": set(ND2_KANJI_BY_UNIT["はじめに"] + ND2_KANJI_BY_UNIT["13"]),
+    "entries": {
+        # Verbs
+        "怠け者": {"reading": ["なまけもの"], "meaning": "Lazy; idle person", "kana_pieces": ["なま", "け", "もの"]},
+        "泳ぐ": {"reading": ["およぐ"], "meaning": "Swim", "kana_pieces": ["およ", "ぐ"]},
+        "遊ぶ": {"reading": ["あそぶ"], "meaning": "Play", "kana_pieces": ["あそ", "ぶ"]},
+        "待つ": {"reading": ["まつ"], "meaning": "Wait", "kana_pieces": ["ま", "つ"]},
+        "貰う": {"reading": ["もらう"], "meaning": "Get; receive", "kana_pieces": ["もら", "う"]},
+        "話す": {"reading": ["はなす"], "meaning": "Speak", "kana_pieces": ["はな", "す"]},
+        "上げる": {"reading": ["あげる"], "meaning": "Give", "kana_pieces": ["あ", "げ", "る"]},
+        # Adjectives
+        "大好き": {"reading": ["だいすき"], "meaning": "Love", "kana_pieces": ["だい", "すき"]},
+        "好き": {"reading": ["すき"], "meaning": "Like", "kana_pieces": ["すき"]},
+        "まあまあ": {"reading": ["まあまあ"], "meaning": "Fairly; so-so"},
+        "駄目": {"reading": ["だめ"], "meaning": "Cannot stand; no way", "kana_pieces": ["だ", "め"]},
+        "上手": {"reading": ["じょうず"], "meaning": "Be good at; skillful", "kana_pieces": ["じょう", "ず"]},
+        "明るい": {"reading": ["あかるい"], "meaning": "Cheerful", "kana_pieces": ["あか", "る", "い"]},
+        "面白い": {"reading": ["おもしろい"], "meaning": "Humorous; funny", "kana_pieces": ["おも", "しろ", "い"]},
+        "頭がいい": {"reading": ["あたまがいい"], "meaning": "Smart; clever", "kana_pieces": ["あたま", "が", "い", "い"]},
+        "厳しい": {"reading": ["きびしい"], "meaning": "Strict", "kana_pieces": ["きび", "し", "い"]},
+        "真面目": {"reading": ["まじめ"], "meaning": "Serious; earnest", "kana_pieces": ["ま", "じ", "め"]},
+        "親切": {"reading": ["しんせつ"], "meaning": "Kind; helpful", "kana_pieces": ["しん", "せつ"]},
+        "フレンドリー": {"reading": ["フレンドリー; ふれんどりー"], "meaning": "Friendly"},
+        "冷静": {"reading": ["れいせい"], "meaning": "Calm; cool-headed", "kana_pieces": ["れい", "せい"]},
+        "ハンサム": {"reading": ["ハンサム; はんさむ"], "meaning": "Handsome"},
+        # Nouns
+        "相撲": {"reading": ["すもう"], "meaning": "Sumo", "kana_pieces": ["す", "もう"]},
+        "プール": {"reading": ["プール; ぷーる"], "meaning": "Swimming pool"},
+        "ピンポン": {"reading": ["ピンポン; ぴんぽん"], "meaning": "Table tennis"},
+        "旅行": {"reading": ["りょこう"], "meaning": "Travel; trip [-suru]", "kana_pieces": ["りょ", "こう"]},
+        "温泉": {"reading": ["おんせん"], "meaning": "Hot spring", "kana_pieces": ["おん", "せん"]},
+        "アクション": {"reading": ["アクション; あくしょん"], "meaning": "Action"},
+        "コメディー": {"reading": ["コメディー; こめでぃー"], "meaning": "Comedy"},
+        "ホラー": {"reading": ["ホラー; ほらー"], "meaning": "Horror"},
+        "SF": {"reading": ["SF; えすえふ"], "meaning": "Science fiction"},
+        "アニメ": {"reading": ["アニメ; あにめ"], "meaning": "Animation"},
+        "ラブストーリー": {"reading": ["ラブストーリー; らぶすとーりー"], "meaning": "Love story"},
+        "スポーツ": {"reading": ["スポーツ; すぽーつ"], "meaning": "Sport"},
+        "サッカー": {"reading": ["サッカー; さっかー"], "meaning": "Soccer"},
+        "絵": {"reading": ["え"], "meaning": "Painting; drawing; picture", "kana_pieces": ["え"]},
+        "恋人": {"reading": ["こいびと"], "meaning": "Lover", "kana_pieces": ["こい", "びと"]},
+        "子ども": {"reading": ["こども"], "meaning": "Child", "kana_pieces": ["こ", "ども"]},
+        "料理": {"reading": ["りょうり"], "meaning": "Food; dishes; cooking [-suru]", "kana_pieces": ["りょう", "り"]},
+        "カフェ": {"reading": ["カフェ; かふぇ"], "meaning": "Café"},
+        # Adverbs
+        "結構": {"reading": ["けっこう"], "meaning": "Quite", "kana_pieces": ["けっ", "こう"]},
+        "何時でも": {"reading": ["いつも"], "meaning": "Always", "kana_pieces": ["いつ", "で", "も"]},
+        #expressions excluded because they often contain symbols that are difficult to match during testing
+    },
+    "vocab": [
+        "怠け者",
+        "泳ぐ",
+        "遊ぶ",
+        "待つ",
+        "貰う",
+        "話す",
+        "上げる",
+        "大好き",
+        "好き",
+        "まあまあ",
+        "駄目",
+        "上手",
+        "明るい",
+        "面白い",
+        "頭がいい",
+        "厳しい",
+        "真面目",
+        "親切",
+        "フレンドリー",
+        "冷静",
+        "ハンサム",
+        "相撲",
+        "プール",
+        "ピンポン",
+        "旅行",
+        "温泉",
+        "アクション",
+        "コメディー",
+        "ホラー",
+        "SF",
+        "アニメ",
+        "ラブストーリー",
+        "スポーツ",
+        "サッカー",
+        "絵",
+        "恋人",
+        "子ども",
+        "料理",
+        "カフェ",
+        "結構",
+        "何時でも",
+    ],
+    "kanji": ["子", "好", "本", "人", "大", "休"],
+}
+
+dd_unit_1 = {
+    # allowed kanji: all of nd2 + dd unit 1
+    "allowed_kanji": set(ALL_ND2_KANJI + DD_KANJI_BY_UNIT["1"]),
+    "entries": {
+        #Nouns
+        "小学校": {"reading": ["しょうがっこう"], "meaning": "Elementary school", "kana_pieces": ["しょう", "がっ", "こう"]},
+        "幼稚園": {"reading": ["ようちえん"], "meaning": "Kindergarten", "kana_pieces": ["よう", "ち", "えん"]},
+        "〜年間": {"reading": ["~ねんかん; ねんかん"], "meaning": "For ~years", "kana_pieces": ["〜", "ねん", "かん"]},
+        "中学校": {"reading": ["ちゅうがっこう"], "meaning": "Middle school", "kana_pieces": ["ちゅう", "がっ", "こう"]},
+        "高校": {"reading": ["こうこう"], "meaning": "High school", "kana_pieces": ["こう", "こう"]},
+        "教育": {"reading": ["きょういく"], "meaning": "Education", "kana_pieces": ["きょう", "いく"]},
+        "義務教育": {"reading": ["ぎむきょういく"], "meaning": "Compulsory education", "kana_pieces": ["ぎ", "む", "きょう", "いく"]},
+        "試験": {"reading": ["しけん"], "meaning": "Exam", "kana_pieces": ["し", "けん"]},
+        "外": {"reading": ["そと"], "meaning": "Outside", "kana_pieces": ["そと"]},
+        "家事": {"reading": ["かじ"], "meaning": "Housework", "kana_pieces": ["か", "じ"]},
+        "ピアノ": {"reading": ["ピアノ; ぴあの"], "meaning": "Piano"},
+        "夜遅く": {"reading": ["よるおそく"], "meaning": "Late night", "kana_pieces": ["よる", "おそ", "く"]},
+        "漫画": {"reading": ["まんが"], "meaning": "Manga; Cartoon; Comic", "kana_pieces": ["まん", "が"]},
+        "インターネット": {"reading": ["インターネット; いんたーねっと"], "meaning": "Internet"},
+        "先輩": {"reading": ["せんぱい"], "meaning": "One's senior", "kana_pieces": ["せん", "ぱい"]},
+        "勇気": {"reading": ["ゆうき"], "meaning": "Courage", "kana_pieces": ["ゆう", "き"]},
+        "情熱": {"reading": ["じょうねつ"], "meaning": "Passion", "kana_pieces": ["じょう", "ねつ"]},
+        "心": {"reading": ["こころ"], "meaning": "Heart", "kana_pieces": ["こころ"]},
+        "授業": {"reading": ["じゅぎょう"], "meaning": "Class", "kana_pieces": ["じゅ", "ぎょう"]},
+        "夢": {"reading": ["ゆめ"], "meaning": "Dream", "kana_pieces": ["ゆめ"]},
+        "外国": {"reading": ["がいこく"], "meaning": "Foreign country", "kana_pieces": ["がい", "こく"]},
+        "宿題": {"reading": ["しゅくだい"], "meaning": "Homework", "kana_pieces": ["しゅく", "だい"]},
+        "心の優しい人": {"reading": ["こころのやさしいひと"], "meaning": "Gentle-hearted person", "kana_pieces": ["こころ", "の", "やさ", "し", "い", "ひと"]},
+        "鬼": {"reading": ["おに"], "meaning": "Demon", "kana_pieces": ["おに"]},
+        "赤鬼": {"reading": ["あかおに"], "meaning": "Red demon", "kana_pieces": ["あか", "おに"]},
+        "青鬼": {"reading": ["あおおに"], "meaning": "Blue demon", "kana_pieces": ["あお", "おに"]},
+        "人生": {"reading": ["じんせい"], "meaning": "One's life", "kana_pieces": ["じん", "せい"]},
+        "村": {"reading": ["むら"], "meaning": "Village", "kana_pieces": ["むら"]},
+        "人間": {"reading": ["にんげん"], "meaning": "Human beings", "kana_pieces": ["にん", "げん"]},
+        "看板": {"reading": ["かんばん"], "meaning": "Sign", "kana_pieces": ["かん", "ばん"]},
+        "アイデア": {"reading": ["アイデア; あいであ"], "meaning": "Idea"},
+        "手紙": {"reading": ["てがみ"], "meaning": "Letter", "kana_pieces": ["て", "がみ"]},
+        "遠く": {"reading": ["とおく"], "meaning": "Far", "kana_pieces": ["とお", "く"]},
+        "話": {"reading": ["はなし"], "meaning": "Story; Talk", "kana_pieces": ["はなし"]},
+        "問題": {"reading": ["もんだい"], "meaning": "Problem", "kana_pieces": ["もん", "だい"]},
+        "家": {"reading": ["いえ"], "meaning": "House", "kana_pieces": ["いえ"]},
+        "ギリギリス": {"reading": ["ギリギリス; ぎりぎりす"], "meaning": "Grasshopper"},
+        "食べ物": {"reading": ["たべもの"], "meaning": "Food", "kana_pieces": ["た", "べ", "もの"]},
+        "飲み物": {"reading": ["のみもの"], "meaning": "Drink; Beverage", "kana_pieces": ["の", "み", "もの"]},
+        "アリ": {"reading": ["アリ; あり"], "meaning": "Ant"},
+        "明かり": {"reading": ["あかり"], "meaning": "Light", "kana_pieces": ["あ", "か", "り"]},
+        #Verbs
+        "降りる": {"reading": ["おりる"], "meaning": "Get off", "kana_pieces": ["お", "り", "る"]},
+        "着く": {"reading": ["つく"], "meaning": "Arrive", "kana_pieces": ["つ", "く"]},
+        "出る": {"reading": ["でる"], "meaning": "Get out; Leave", "kana_pieces": ["で", "る"]},
+        "決める": {"reading": ["きめる"], "meaning": "Decide", "kana_pieces": ["き", "め", "る"]},
+        "習う": {"reading": ["ならう"], "meaning": "Learn", "kana_pieces": ["なら", "う"]},
+        "世話をする": {"reading": ["せわをする"], "meaning": "Take care; Look after", "kana_pieces": ["せ", "わ", "を", "す", "る"]},
+        "ペットを飼う": {"reading": ["ペットをかう; ぺっとをかう"], "meaning": "Have a pet", "kana_pieces": ["ペ", "ッ", "ト", "を", "か", "う"]},
+        "泊まる": {"reading": ["とまる"], "meaning": "Stay over (night)", "kana_pieces": ["と", "ま", "る"]},
+        "呉れる": {"reading": ["くれる"], "meaning": "Give (me)", "kana_pieces": ["く", "れ", "る"]},
+        "奢る": {"reading": ["おごる"], "meaning": "Treat (someone)", "kana_pieces": ["おご", "る"]},
+        "連れて行く": {"reading": ["つれていく"], "meaning": "Take (someone)", "kana_pieces": ["つ", "れ", "て", "い", "く"]},
+        "おしゃれをする": {"reading": ["おしゃれをする"], "meaning": "Dress up"},
+        "サボる": {"reading": ["サボる; さぼる"], "meaning": "Skip (a class)"},
+        "持つ": {"reading": ["もつ"], "meaning": "Hold; Have", "kana_pieces": ["も", "つ"]},
+        "諦める": {"reading": ["あきらめる"], "meaning": "Give up", "kana_pieces": ["あきら", "め", "る"]},
+        "困る": {"reading": ["こまる"], "meaning": "Be in need; In trouble", "kana_pieces": ["こま", "る"]},
+        "考える": {"reading": ["かんがえる"], "meaning": "Think; Consider", "kana_pieces": ["かんが", "え", "る"]},
+        "壊す": {"reading": ["こわす"], "meaning": "Break", "kana_pieces": ["こわ", "す"]},
+        "オイオイ泣く": {"reading": ["オイオイなく; おいおいなく"], "meaning": "Cry one's heart out", "kana_pieces": ["オ", "イ", "オ", "イ", "な", "く"]},
+        "笑う": {"reading": ["わらう"], "meaning": "Laugh", "kana_pieces": ["わら", "う"]},
+        "働く": {"reading": ["はたらく"], "meaning": "Work", "kana_pieces": ["はたら", "く"]},
+        "バイオリンを弾く": {"reading": ["バイオリンをひく; ばいおりんをひく"], "meaning": "Play a violin", "kana_pieces": ["バ", "イ", "オ", "リ", "ン", "を", "ひ", "く"]},
+        "答える": {"reading": ["こたえる"], "meaning": "Answer", "kana_pieces": ["こた", "え", "る"]},
+        "始まる": {"reading": ["はじまる"], "meaning": "(It) starts; begins", "kana_pieces": ["はじ", "ま", "る"]},
+        "探す": {"reading": ["さがす"], "meaning": "Look for; Search", "kana_pieces": ["さが", "す"]},
+        "点く": {"reading": ["つく"], "meaning": "(Lights) turn on", "kana_pieces": ["つ", "く"]},
+        #Adjectives
+        "シャイ": {"reading": ["シャイ"], "meaning": "Shy"},
+        "悪戯": {"reading": ["いたずら"], "meaning": "Mischievous", "kana_pieces": ["いた", "ずら"]},
+        "得意": {"reading": ["とくい"], "meaning": "Good at", "kana_pieces": ["とく", "い"]},
+        "悪い": {"reading": ["わるい"], "meaning": "Bad", "kana_pieces": ["わる", "い"]},
+        "悲しい": {"reading": ["かなしい"], "meaning": "Sad", "kana_pieces": ["かな", "し", "い"]},
+        "正しい": {"reading": ["ただしい"], "meaning": "Correct", "kana_pieces": ["ただ", "し", "い"]},
+        "自分で": {"reading": ["じぶんで"], "meaning": "By oneself", "kana_pieces": ["じ", "ぶん", "で"]},
+        "一生懸命": {"reading": ["いっしょうけんめい"], "meaning": "Very hard", "kana_pieces": ["いっ", "しょう", "けん", "めい"]},
+        #Conjunctions
+        "然し": {"reading": ["しかし"], "meaning": "However; But", "kana_pieces": ["しか", "し"]},
+        #Expressions
+        "夢を持つこと": {"reading": ["ゆめをもつこと"], "meaning": "Having one's dreams", "kana_pieces": ["ゆめ", "を", "も", "つ", "こ", "と"]},
+        "諦めないこと": {"reading": ["あきらめないこと"], "meaning": "Not giving up", "kana_pieces": ["あきら", "め", "な", "い", "こ", "と"]},
+        "ある山": {"reading": ["あるやま"], "meaning": "A certain mountain", "kana_pieces": ["あ", "る", "やま"]},
+        "お腹がペコペコです": {"reading": ["おなかがペコペコです; おなかがぺこぺこです"], "meaning": "I'm starving", "kana_pieces": ["お", "なか", "が", "ペ", "コ", "ペ", "コ", "で", "す"]},
+        #Kanji terms
+        "教える": {"reading": ["おしえる"], "meaning": "To teach; To tell", "kana_pieces": ["おし", "え", "る"]},
+        "仕事": {"reading": ["しごと"], "meaning": "Job; Occupation", "kana_pieces": ["し", "ごと"]},
+        "火事": {"reading": ["かじ"], "meaning": "Fire", "kana_pieces": ["か", "じ"]},
+        "事故": {"reading": ["じこ"], "meaning": "Accident", "kana_pieces": ["じ", "こ"]},
+        "作る": {"reading": ["つくる"], "meaning": "To make", "kana_pieces": ["つく", "る"]},
+        "作り方": {"reading": ["つくりかた"], "meaning": "How to make", "kana_pieces": ["つく", "り", "かた"]},
+        "家族": {"reading": ["かぞく"], "meaning": "Family", "kana_pieces": ["か", "ぞく"]},
+        "使う": {"reading": ["つかう"], "meaning": "To use", "kana_pieces": ["つか", "う"]},
+        "大使館": {"reading": ["たいしかん"], "meaning": "Embassy", "kana_pieces": ["たい", "し", "かん"]},
+        "心配する": {"reading": ["しんぱいする"], "meaning": "To worry", "kana_pieces": ["しん", "ぱい", "す", "る"]},
+        "中心": {"reading": ["ちゅうしん"], "meaning": "Center", "kana_pieces": ["ちゅう", "しん"]},
+        "安心する": {"reading": ["あんしんする"], "meaning": "To be relieved", "kana_pieces": ["あん", "しん", "す", "る"]},
+        "食べ方": {"reading": ["たべかた"], "meaning": "How to eat", "kana_pieces": ["た", "べ", "かた"]},
+        "言い方": {"reading": ["いいかた"], "meaning": "How to say", "kana_pieces": ["い", "い", "かた"]},
+        "手": {"reading": ["て"], "meaning": "Hand", "kana_pieces": ["て"]},
+        "手伝う": {"reading": ["てつだう"], "meaning": "To help", "kana_pieces": ["て", "つだ", "う"]},
+        "上手": {"reading": ["じょうず"], "meaning": "Good at", "kana_pieces": ["じょう", "ず"]},
+        "持ってくる": {"reading": ["もってくる"], "meaning": "To bring", "kana_pieces": ["も", "っ", "て", "く", "る"]},
+        "気持ち": {"reading": ["きもち"], "meaning": "Feeling", "kana_pieces": ["き", "も", "ち"]},
+        "お金持ち": {"reading": ["おかねもち"], "meaning": "Rich person", "kana_pieces": ["お", "かね", "もち"]},
+        "山": {"reading": ["やま"], "meaning": "Mountain", "kana_pieces": ["やま"]},
+        "富士山": {"reading": ["ふじさん"], "meaning": "Mt. Fuji", "kana_pieces": ["ふ", "じ", "さん"]},
+        "明るい": {"reading": ["あかるい"], "meaning": "Bright; Cheerful", "kana_pieces": ["あか", "る", "い"]},
+        "明日": {"reading": ["あした"], "meaning": "Tomorrow", "kana_pieces": ["あ", "した"]},
+        "発明する": {"reading": ["はつめいする"], "meaning": "To invent", "kana_pieces": ["はつ", "めい", "す", "る"]},
+        "明治時代": {"reading": ["めいじじだい"], "meaning": "Meiji Era", "kana_pieces": ["めい", "じ", "じ", "だい"]},
+    },
+    "vocab": [
+        "小学校",
+        "幼稚園",
+        "〜年間",
+        "中学校",
+        "高校",
+        "教育",
+        "義務教育",
+        "試験",
+        "外",
+        "家事",
+        "ピアノ",
+        "夜遅く",
+        "漫画",
+        "インターネット",
+        "先輩",
+        "勇気",
+        "情熱",
+        "心",
+        "授業",
+        "夢",
+        "外国",
+        "宿題",
+        "心の優しい人",
+        "鬼",
+        "赤鬼",
+        "青鬼",
+        "人生",
+        "村",
+        "人間",
+        "看板",
+        "アイデア",
+        "手紙",
+        "遠く",
+        "話",
+        "問題",
+        "家",
+        "ギリギリス",
+        "食べ物",
+        "飲み物",
+        "アリ",
+        "明かり",
+        "降りる",
+        "着く",
+        "出る",
+        "決める",
+        "習う",
+        "世話をする",
+        "ペットを飼う",
+        "泊まる",
+        "呉れる",
+        "奢る",
+        "連れて行く",
+        "おしゃれをする",
+        "サボる",
+        "持つ",
+        "諦める",
+        "困る",
+        "考える",
+        "壊す",
+        "オイオイ泣く",
+        "笑う",
+        "働く",
+        "バイオリンを弾く",
+        "答える",
+        "始まる",
+        "探す",
+        "点く",
+        "シャイ",
+        "悪戯",
+        "得意",
+        "悪い",
+        "悲しい",
+        "正しい",
+        "自分で",
+        "一生懸命",
+        "然し",
+        "夢を持つこと",
+        "諦めないこと",
+        "ある山",
+        "お腹がペコペコです",
+    ],
+    "kanji": ["教", "事", "作", "仕", "家", "使"],
+}
+
+dd_unit_2 = {
+    "allowed_kanji": set(ALL_ND2_KANJI + DD_KANJI_BY_UNIT["1"] + DD_KANJI_BY_UNIT["2"]),
+    "entries": {
+        "ENTRY_01": {"reading": [""], "meaning": ""},
+        "ENTRY_02": {"reading": [""], "meaning": ""},
+        "ENTRY_03": {"reading": [""], "meaning": ""},
+        "ENTRY_04": {"reading": [""], "meaning": ""},
+        "ENTRY_05": {"reading": [""], "meaning": ""},
+        "ENTRY_06": {"reading": [""], "meaning": ""},
+        "ENTRY_07": {"reading": [""], "meaning": ""},
+        "ENTRY_08": {"reading": [""], "meaning": ""},
+        "ENTRY_09": {"reading": [""], "meaning": ""},
+        "ENTRY_10": {"reading": [""], "meaning": ""},
+        "ENTRY_11": {"reading": [""], "meaning": ""},
+        "ENTRY_12": {"reading": [""], "meaning": ""},
+        "ENTRY_13": {"reading": [""], "meaning": ""},
+        "ENTRY_14": {"reading": [""], "meaning": ""},
+        "ENTRY_15": {"reading": [""], "meaning": ""},
+        "ENTRY_16": {"reading": [""], "meaning": ""},
+        "ENTRY_17": {"reading": [""], "meaning": ""},
+        "ENTRY_18": {"reading": [""], "meaning": ""},
+        "ENTRY_19": {"reading": [""], "meaning": ""},
+        "ENTRY_20": {"reading": [""], "meaning": ""},
+    },
+    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+    "kanji": ["", "", "", "", "", ""],
+}
+
+dd_unit_3 = {
+    "allowed_kanji": set(ALL_ND2_KANJI + DD_KANJI_BY_UNIT["1"] + DD_KANJI_BY_UNIT["2"] + DD_KANJI_BY_UNIT["3"]),
+    "entries": {
+        "ENTRY_01": {"reading": [""], "meaning": ""},
+        "ENTRY_02": {"reading": [""], "meaning": ""},
+        "ENTRY_03": {"reading": [""], "meaning": ""},
+        "ENTRY_04": {"reading": [""], "meaning": ""},
+        "ENTRY_05": {"reading": [""], "meaning": ""},
+        "ENTRY_06": {"reading": [""], "meaning": ""},
+        "ENTRY_07": {"reading": [""], "meaning": ""},
+        "ENTRY_08": {"reading": [""], "meaning": ""},
+        "ENTRY_09": {"reading": [""], "meaning": ""},
+        "ENTRY_10": {"reading": [""], "meaning": ""},
+        "ENTRY_11": {"reading": [""], "meaning": ""},
+        "ENTRY_12": {"reading": [""], "meaning": ""},
+        "ENTRY_13": {"reading": [""], "meaning": ""},
+        "ENTRY_14": {"reading": [""], "meaning": ""},
+        "ENTRY_15": {"reading": [""], "meaning": ""},
+        "ENTRY_16": {"reading": [""], "meaning": ""},
+        "ENTRY_17": {"reading": [""], "meaning": ""},
+        "ENTRY_18": {"reading": [""], "meaning": ""},
+        "ENTRY_19": {"reading": [""], "meaning": ""},
+        "ENTRY_20": {"reading": [""], "meaning": ""},
+    },
+    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+    "kanji": ["", "", "", "", "", ""],
+}
+
+dd_unit_4 = {
+    "allowed_kanji": set(ALL_ND2_KANJI + DD_KANJI_BY_UNIT["1"] + DD_KANJI_BY_UNIT["2"] + DD_KANJI_BY_UNIT["3"] + DD_KANJI_BY_UNIT["4"]),
+    "entries": {
+        "ENTRY_01": {"reading": [""], "meaning": ""},
+        "ENTRY_02": {"reading": [""], "meaning": ""},
+        "ENTRY_03": {"reading": [""], "meaning": ""},
+        "ENTRY_04": {"reading": [""], "meaning": ""},
+        "ENTRY_05": {"reading": [""], "meaning": ""},
+        "ENTRY_06": {"reading": [""], "meaning": ""},
+        "ENTRY_07": {"reading": [""], "meaning": ""},
+        "ENTRY_08": {"reading": [""], "meaning": ""},
+        "ENTRY_09": {"reading": [""], "meaning": ""},
+        "ENTRY_10": {"reading": [""], "meaning": ""},
+        "ENTRY_11": {"reading": [""], "meaning": ""},
+        "ENTRY_12": {"reading": [""], "meaning": ""},
+        "ENTRY_13": {"reading": [""], "meaning": ""},
+        "ENTRY_14": {"reading": [""], "meaning": ""},
+        "ENTRY_15": {"reading": [""], "meaning": ""},
+        "ENTRY_16": {"reading": [""], "meaning": ""},
+        "ENTRY_17": {"reading": [""], "meaning": ""},
+        "ENTRY_18": {"reading": [""], "meaning": ""},
+        "ENTRY_19": {"reading": [""], "meaning": ""},
+        "ENTRY_20": {"reading": [""], "meaning": ""},
+    },
+    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+    "kanji": ["", "", "", "", "", ""],
+}
+
+dd_unit_5 = {
+    "allowed_kanji": set(ALL_ND2_KANJI + [k for chars in DD_KANJI_BY_UNIT.values() for k in chars]),
+    "entries": {
+        "ENTRY_01": {"reading": [""], "meaning": ""},
+        "ENTRY_02": {"reading": [""], "meaning": ""},
+        "ENTRY_03": {"reading": [""], "meaning": ""},
+        "ENTRY_04": {"reading": [""], "meaning": ""},
+        "ENTRY_05": {"reading": [""], "meaning": ""},
+        "ENTRY_06": {"reading": [""], "meaning": ""},
+        "ENTRY_07": {"reading": [""], "meaning": ""},
+        "ENTRY_08": {"reading": [""], "meaning": ""},
+        "ENTRY_09": {"reading": [""], "meaning": ""},
+        "ENTRY_10": {"reading": [""], "meaning": ""},
+        "ENTRY_11": {"reading": [""], "meaning": ""},
+        "ENTRY_12": {"reading": [""], "meaning": ""},
+        "ENTRY_13": {"reading": [""], "meaning": ""},
+        "ENTRY_14": {"reading": [""], "meaning": ""},
+        "ENTRY_15": {"reading": [""], "meaning": ""},
+        "ENTRY_16": {"reading": [""], "meaning": ""},
+        "ENTRY_17": {"reading": [""], "meaning": ""},
+        "ENTRY_18": {"reading": [""], "meaning": ""},
+        "ENTRY_19": {"reading": [""], "meaning": ""},
+        "ENTRY_20": {"reading": [""], "meaning": ""},
+    },
+    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+    "kanji": ["", "", "", "", "", ""],
+}
+
+index = {
+    "allowed_kanji": set(ALL_ND2_KANJI + [k for chars in DD_KANJI_BY_UNIT.values() for k in chars]),
+    "entries": {
+        "ENTRY_01": {"reading": [""], "meaning": ""},
+        "ENTRY_02": {"reading": [""], "meaning": ""},
+        "ENTRY_03": {"reading": [""], "meaning": ""},
+        "ENTRY_04": {"reading": [""], "meaning": ""},
+        "ENTRY_05": {"reading": [""], "meaning": ""},
+        "ENTRY_06": {"reading": [""], "meaning": ""},
+        "ENTRY_07": {"reading": [""], "meaning": ""},
+        "ENTRY_08": {"reading": [""], "meaning": ""},
+        "ENTRY_09": {"reading": [""], "meaning": ""},
+        "ENTRY_10": {"reading": [""], "meaning": ""},
+        "ENTRY_11": {"reading": [""], "meaning": ""},
+        "ENTRY_12": {"reading": [""], "meaning": ""},
+        "ENTRY_13": {"reading": [""], "meaning": ""},
+        "ENTRY_14": {"reading": [""], "meaning": ""},
+        "ENTRY_15": {"reading": [""], "meaning": ""},
+        "ENTRY_16": {"reading": [""], "meaning": ""},
+        "ENTRY_17": {"reading": [""], "meaning": ""},
+        "ENTRY_18": {"reading": [""], "meaning": ""},
+        "ENTRY_19": {"reading": [""], "meaning": ""},
+        "ENTRY_20": {"reading": [""], "meaning": ""},
+    },
+    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+    "kanji": ["", "", "", "", "", ""],
+}
+
 STUDY_UNITS = {
+    "JLPT N5": jlpt_n5,
+    "JLPT N4": jlpt_n4,
+    "JLPT N3": jlpt_n3,
+    "JLPT N2": jlpt_n2,
+    "JLPT N1": jlpt_n1,
+    "ND はじめに": nd_hajimeni,
+    "ND Unit 13": nd_unit_13,
     "DD Unit 1": dd_unit_1,
     "DD Unit 2": dd_unit_2,
     "DD Unit 3": dd_unit_3,
     "DD Unit 4": dd_unit_4,
     "DD Unit 5": dd_unit_5,
-    "ND Unit 13": nd_unit_13,
     "Index": index,
-    "JLPT N5": jlpt_n5,
-    "JLPT N4": jlpt_n4,
 }
+
+# Ascending order of JLPT levels (N5 lowest -> N1 highest)
+JLPT_HIERARCHY = [
+    "JLPT N5",
+    "JLPT N4",
+    "JLPT N3",
+    "JLPT N2",
+    "JLPT N1",
+]
+
+# Ascending order of ND / DD levels (ND はじめに lowest -> DD Unit 5 highest)
+ND_DD_HIERARCHY = [
+    "ND はじめに",
+    "ND Unit 13",
+    "ND Unit 14",
+    "ND Unit 15",
+    "ND Unit 16",
+    "ND Unit 17",
+    "ND Unit 18",
+    "ND Unit 19",
+    "ND Unit 20",
+    "ND Unit 21",
+    "ND Unit 22",
+    "ND Unit 23",
+    "ND Unit 24",
+    "DD Unit 1",
+    "DD Unit 2",
+    "DD Unit 3",
+    "DD Unit 4",
+    "DD Unit 5",
+]
 
 # really shouldn't need to touch this, just establishes what's vocab and what's kanji
 STUDY_CATEGORIES = {
     "Vocabulary": {
         name: unit
         for name, unit in STUDY_UNITS.items()
-        if not unit.get("kanji_only", False) and unit.get("vocab")
+        if unit["vocab"]
     },
     "Kanji": {
         name: unit
         for name, unit in STUDY_UNITS.items()
-        if unit.get("kanji")
+        if unit["kanji"]
     },
 }
 
@@ -1032,6 +1095,65 @@ def build_vocabulary_deck(entries, entry_keys, direction, kanji_mode="All Kanji"
             deck[prompt_text] = list(dict.fromkeys(meanings))
     return deck
 
+def get_kanji_source_entries(selected_unit_names, all_units, pull_from_eligible=False):
+    """
+    Collects source entry dicts for kanji quiz generation.
+    - When `pull_from_eligible` is False: only uses entries from `selected_unit_names`.
+    - When `pull_from_eligible` is True:
+      * JLPT units draw from themselves + strictly lower JLPT levels (never higher JLPT levels),
+        plus any ND/DD unit where at least one of the JLPT unit's focus kanji appears in that unit's "kanji" list.
+      * ND/DD units draw from themselves + ND/DD units at or below them in `ND_DD_HIERARCHY`
+        (never higher ND/DD levels), plus any JLPT unit where at least one of the ND/DD unit's focus kanji
+        appears in that JLPT unit's "kanji" list.
+    """
+    combined_entries = {}
+    if not pull_from_eligible:
+        for unit_name in selected_unit_names:
+            unit = all_units.get(unit_name)
+            if unit:
+                combined_entries.update(unit.get("entries", {}))
+        return combined_entries
+
+    for unit_name in selected_unit_names:
+        unit = all_units.get(unit_name)
+        if not unit:
+            continue
+
+        combined_entries.update(unit.get("entries", {}))
+        unit_focus_set = {k for k in unit.get("kanji", []) if k}
+
+        if unit_name in JLPT_HIERARCHY:
+            rank = JLPT_HIERARCHY.index(unit_name)
+            # Lower JLPT units only (strictly below rank)
+            for lower_name in JLPT_HIERARCHY[:rank]:
+                lower_unit = all_units.get(lower_name)
+                if lower_unit:
+                    combined_entries.update(lower_unit.get("entries", {}))
+            # Any ND/DD unit where this JLPT unit's focus kanji is listed in "kanji"
+            if unit_focus_set:
+                for candidate_name, candidate_unit in all_units.items():
+                    if candidate_name in ND_DD_HIERARCHY:
+                        cand_focus = {k for k in candidate_unit.get("kanji", []) if k}
+                        if cand_focus & unit_focus_set:
+                            combined_entries.update(candidate_unit.get("entries", {}))
+
+        elif unit_name in ND_DD_HIERARCHY:
+            rank = ND_DD_HIERARCHY.index(unit_name)
+            # ND/DD units at or below rank only (never above rank)
+            for eligible_name in ND_DD_HIERARCHY[: rank + 1]:
+                eligible_unit = all_units.get(eligible_name)
+                if eligible_unit:
+                    combined_entries.update(eligible_unit.get("entries", {}))
+            # Any JLPT unit where this ND/DD unit's focus kanji is listed in "kanji"
+            if unit_focus_set:
+                for candidate_name, candidate_unit in all_units.items():
+                    if candidate_name in JLPT_HIERARCHY:
+                        cand_focus = {k for k in candidate_unit.get("kanji", []) if k}
+                        if cand_focus & unit_focus_set:
+                            combined_entries.update(candidate_unit.get("entries", {}))
+
+    return combined_entries
+
 def build_kanji_deck(entries, focus_kanji, mode):
     deck = {}
     for written, entry in entries.items():
@@ -1083,19 +1205,22 @@ if st.session_state.stage == "setup":
         horizontal=True
     )
 
+    pull_from_eligible = False
+
     if category == "Kanji":
         kanji_mode = st.radio(
             "Kanji mode:",
             ["Reading", "Meaning"],
             horizontal=True
         )
-        kanji_term_pool = st.radio(
-            "Kanji term pool (Reading & Meaning):",
-            ["Unit vocab only", "All units"],
-            horizontal=True
-        )
         direction = f"Kanji {kanji_mode}"
         vocab_kanji_mode = "All Kanji"
+        kanji_pool_mode = st.radio(
+            "Kanji term pool:",
+            ["Only selected unit(s)", "Pull from eligible units"],
+            horizontal=True,
+        )
+        pull_from_eligible = (kanji_pool_mode == "Pull from eligible units")
     else:
         direction = st.radio(
             "Direction:",
@@ -1107,7 +1232,6 @@ if st.session_state.stage == "setup":
             ["Progress-based", "All Kanji"],
             horizontal=True
         )
-        kanji_term_pool = "Unit vocab only"
 
     available_sets = STUDY_CATEGORIES[category]
     study_all = st.checkbox("Study all units")
@@ -1126,7 +1250,7 @@ if st.session_state.stage == "setup":
         st.write("- Use the exact spelling/phrasing used in the book; capitalization doesn't matter, but if there is a ~, 〜, parentheses, or other grammar element, it should be included. SPACES MATTER. If two meanings are separated by a comma, both are correct; you do not need to enter both.")
         st.write("- Do not include the (な) in な-adjectives.")
         st.write("- Vocabulary kanji: 'Progress-based' keeps learned kanji and renders unlearned kanji as kana; 'All Kanji' shows full kanji spellings.")
-        st.write("- Kanji term pool (for both Reading and Meaning): 'Unit vocab only' searches entries in selected units; 'All units' searches entries across all units for your focus kanji.")
+        st.write("- Kanji term pool: 'Only selected unit(s)' uses entries from the chosen unit(s); 'Pull from eligible units' draws from lower JLPT levels (never higher) for JLPT units, at-or-below ND/DD levels (from ND はじめに up to DD Unit 5, never higher) for ND/DD units, and cross-pulls between JLPT and ND/DD units when a focus kanji matches.")
         st.write("- Kanji Reading shows a kanji word and expects the full kana spelling, INCLUDING any hiragana/katakana in the word. E.g., answer「夏休み」 with 「なつやすみ」.")
         st.write("- If you have any problems or ideas for things I could add, message me on LINE or something and I'll see what I can do.")
 
@@ -1134,19 +1258,18 @@ if st.session_state.stage == "setup":
         if not selected_sets:
             st.error("Invalid selection. Please select at least one unit.")
         elif category == "Kanji":
-            combined_entries = {}
             focus_kanji = []
             for unit_name in selected_sets:
                 unit = available_sets[unit_name]
                 focus_kanji.extend(unit["kanji"])
-                if kanji_term_pool == "Unit vocab only":
-                    combined_entries.update(unit.get("entries", {}))
 
-            if kanji_term_pool == "All units":
-                for unit in STUDY_UNITS.values():
-                    combined_entries.update(unit.get("entries", {}))
+            focus_kanji = [k for k in dict.fromkeys(focus_kanji) if k]
+            combined_entries = get_kanji_source_entries(
+                selected_sets,
+                STUDY_UNITS,
+                pull_from_eligible=pull_from_eligible,
+            )
 
-            focus_kanji = [k for k in dict.fromkeys(focus_kanji) if k and k.strip()]
             if not focus_kanji:
                 st.error("The selected units don't have any focus kanji.")
             else:
@@ -1164,9 +1287,7 @@ if st.session_state.stage == "setup":
                 ]
 
                 if not matching_words:
-                    st.error(
-                        f"No entries in the selected pool contain their focus kanji ({', '.join(focus_kanji)})."
-                    )
+                    st.error("No entries in the eligible units contain their focus kanji.")
                 elif kanji_mode == "Reading" and missing_readings:
                     st.error(f"Add a reading for: {', '.join(missing_readings)}.")
                 elif kanji_mode == "Meaning" and missing_meanings:
