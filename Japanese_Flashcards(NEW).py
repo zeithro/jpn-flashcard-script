@@ -722,6 +722,11 @@ if st.session_state.stage == "setup":
             ["Reading", "Meaning"],
             horizontal=True
         )
+        kanji_term_pool = st.radio(
+            "Kanji term pool:",
+            ["Unit vocab only", "All units"],
+            horizontal=True
+        )
         direction = f"Kanji {kanji_mode}"
         vocab_kanji_mode = "All Kanji"
     else:
@@ -735,6 +740,7 @@ if st.session_state.stage == "setup":
             ["Progress-based", "All Kanji"],
             horizontal=True
         )
+        kanji_term_pool = "Unit vocab only"
 
     available_sets = STUDY_CATEGORIES[category]
     study_all = st.checkbox("Study all units")
@@ -753,6 +759,7 @@ if st.session_state.stage == "setup":
         st.write("- Use the exact spelling/phrasing used in the book; capitalization doesn't matter, but if there is a ~, 〜, parentheses, or other grammar element, it should be included. SPACES MATTER. If two meanings are separated by a comma, both are correct; you do not need to enter both.")
         st.write("- Do not include the (な) in な-adjectives.")
         st.write("- Vocabulary kanji: 'Progress-based' keeps learned kanji and renders unlearned kanji as kana; 'All Kanji' shows full kanji spellings.")
+        st.write("- Kanji term pool: 'Unit vocab only' searches entries in selected units; 'All units' searches entries across all units for your focus kanji.")
         st.write("- Kanji Reading shows a kanji word and expects the full kana spelling, INCLUDING any hiragana/katakana in the word. E.g., answer「夏休み」 with 「なつやすみ」.")
         st.write("- If you have any problems or ideas for things I could add, message me on LINE or something and I'll see what I can do.")
 
@@ -764,8 +771,13 @@ if st.session_state.stage == "setup":
             focus_kanji = []
             for unit_name in selected_sets:
                 unit = available_sets[unit_name]
-                combined_entries.update(unit["entries"])
                 focus_kanji.extend(unit["kanji"])
+                if kanji_term_pool == "Unit vocab only":
+                    combined_entries.update(unit.get("entries", {}))
+
+            if kanji_term_pool == "All units":
+                for unit in STUDY_UNITS.values():
+                    combined_entries.update(unit.get("entries", {}))
 
             focus_kanji = list(dict.fromkeys(focus_kanji))
             if not focus_kanji:
@@ -785,7 +797,7 @@ if st.session_state.stage == "setup":
                 ]
 
                 if not matching_words:
-                    st.error("No entries in the selected units contain their focus kanji.")
+                    st.error("No entries in the selected pool contain their focus kanji.")
                 elif kanji_mode == "Reading" and missing_readings:
                     st.error(f"Add a reading for: {', '.join(missing_readings)}.")
                 elif kanji_mode == "Meaning" and missing_meanings:
