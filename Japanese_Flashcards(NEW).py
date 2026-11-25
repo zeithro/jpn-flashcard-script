@@ -479,6 +479,34 @@ index = {
     "kanji": ["", "", "", "", "", ""],
 }
 
+jlpt_n5 = {
+    "allowed_kanji": set(ALL_ND2_KANJI + [k for chars in DD_KANJI_BY_UNIT.values() for k in chars]),
+    "entries": {
+        "ENTRY_01": {"reading": [""], "meaning": ""},
+        "ENTRY_02": {"reading": [""], "meaning": ""},
+        "ENTRY_03": {"reading": [""], "meaning": ""},
+        "ENTRY_04": {"reading": [""], "meaning": ""},
+        "ENTRY_05": {"reading": [""], "meaning": ""},
+        "ENTRY_06": {"reading": [""], "meaning": ""},
+        "ENTRY_07": {"reading": [""], "meaning": ""},
+        "ENTRY_08": {"reading": [""], "meaning": ""},
+        "ENTRY_09": {"reading": [""], "meaning": ""},
+        "ENTRY_10": {"reading": [""], "meaning": ""},
+        "ENTRY_11": {"reading": [""], "meaning": ""},
+        "ENTRY_12": {"reading": [""], "meaning": ""},
+        "ENTRY_13": {"reading": [""], "meaning": ""},
+        "ENTRY_14": {"reading": [""], "meaning": ""},
+        "ENTRY_15": {"reading": [""], "meaning": ""},
+        "ENTRY_16": {"reading": [""], "meaning": ""},
+        "ENTRY_17": {"reading": [""], "meaning": ""},
+        "ENTRY_18": {"reading": [""], "meaning": ""},
+        "ENTRY_19": {"reading": [""], "meaning": ""},
+        "ENTRY_20": {"reading": [""], "meaning": ""},
+    },
+    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+    "kanji": ["", "", "", "", "", ""],
+}
+
 STUDY_UNITS = {
     "DD Unit 1": dd_unit_1,
     "DD Unit 2": dd_unit_2,
@@ -487,6 +515,8 @@ STUDY_UNITS = {
     "DD Unit 5": dd_unit_5,
     "ND Unit 13": nd_unit_13,
     "Index": index,
+    "JLPT N5": jlpt_n5,
+    "JLPT N4": jlpt_n4,
 }
 
 # really shouldn't need to touch this, just establishes what's vocab and what's kanji
@@ -774,7 +804,7 @@ if st.session_state.stage == "setup":
         st.write("- Do not include the (な) in な-adjectives.")
         st.write("- Vocabulary kanji: 'Progress-based' uses each unit's allowed kanji; 'All Kanji' shows full kanji spellings; 'Custom' lets you pick any combination of kanji units (plus optional extra characters) while substituting unchosen kanji with kana.")
         st.write("- Kanji Reading shows a kanji word and expects the full kana spelling, INCLUDING any hiragana/katakana in the word. E.g., answer「夏休み」 with 「なつやすみ」.")
-        st.write("- If you have any problems or ideas for things I could add, message me on LINE or something and I'll see what I can do.")
+        st.write("- If you have any problems or ideas for things I could add, message me on LINE or something and I'll see what I can do. Currently working on adding JLPT kanji levels and maybe some kind of learning mode?")
 
     if st.button("Start", type="primary", use_container_width=True):
         if not selected_sets:
