@@ -36,6 +36,11 @@ DD_KANJI_BY_UNIT = {
 
 ALL_ND2_KANJI = [k for chars in ND2_KANJI_BY_UNIT.values() for k in chars]
 
+KANJI_UNIT_SETS = {
+    **{f"ND2: {unit}": set(chars) for unit, chars in ND2_KANJI_BY_UNIT.items()},
+    **{f"DD: {unit}": set(chars) for unit, chars in DD_KANJI_BY_UNIT.items()},
+}
+
 dd_unit_1 = {
     # allowed kanji: all of nd2 + dd unit 1
     "allowed_kanji": set(ALL_ND2_KANJI + DD_KANJI_BY_UNIT["1"]),
@@ -592,7 +597,7 @@ def render_progress_term(written, entry, allowed_kanji):
 
 def build_vocabulary_deck(entries, entry_keys, direction, kanji_mode="All Kanji", allowed_kanji=None):
     deck = {}
-    use_progress = (kanji_mode == "Progress-based") and (allowed_kanji is not None)
+    use_filtered_kanji = (kanji_mode in ("Progress-based", "Custom")) and (allowed_kanji is not None)
 
     if direction == "ENG to JPN":
         for written in entry_keys:
@@ -602,7 +607,7 @@ def build_vocabulary_deck(entries, entry_keys, direction, kanji_mode="All Kanji"
                 for reading in entry["reading"]
                 for answer in split_answers(reading)
             ]
-            if use_progress:
+            if use_filtered_kanji:
                 display_form = render_progress_term(written, entry, allowed_kanji)
                 accepted = readings + [display_form, written]
             else:
@@ -613,7 +618,7 @@ def build_vocabulary_deck(entries, entry_keys, direction, kanji_mode="All Kanji"
             entry = entries[written]
             prompt_text = (
                 render_progress_term(written, entry, allowed_kanji)
-                if use_progress
+                if use_filtered_kanji
                 else written
             )
             meanings = [part.lower() for part in split_answers(entry["meaning"])]
@@ -671,6 +676,8 @@ if st.session_state.stage == "setup":
         horizontal=True
     )
 
+    custom_allowed_kanji = None
+
     if category == "Kanji":
         kanji_mode = st.radio(
             "Kanji mode:",
@@ -687,9 +694,48 @@ if st.session_state.stage == "setup":
         )
         vocab_kanji_mode = st.radio(
             "Vocabulary kanji:",
-            ["Progress-based", "All Kanji"],
+            ["Progress-based", "All Kanji", "Custom"],
             horizontal=True
         )
+
+        if vocab_kanji_mode == "Custom":
+            all_kanji_unit_labels = list(KANJI_UNIT_SETS.keys())
+            if "custom_kanji_units" not in st.session_state:
+                st.session_state.custom_kanji_units = ["ND2: はじめに", "ND2: 13"]
+
+            preset_col1, preset_col2, preset_col3 = st.columns([2, 1, 1])
+            with preset_col1:
+                preset_cutoff = st.selectbox(
+                    "Quick preset (select all through unit):",
+                    options=all_kanji_unit_labels,
+                    index=all_kanji_unit_labels.index("ND2: 20") if "ND2: 20" in all_kanji_unit_labels else 0,
+                    label_visibility="collapsed",
+                )
+            with preset_col2:
+                if st.button("Select up to unit", use_container_width=True):
+                    cutoff_idx = all_kanji_unit_labels.index(preset_cutoff)
+                    st.session_state.custom_kanji_units = all_kanji_unit_labels[: cutoff_idx + 1]
+                    st.rerun()
+            with preset_col3:
+                if st.button("Clear all", use_container_width=True):
+                    st.session_state.custom_kanji_units = []
+                    st.rerun()
+
+            selected_kanji_units = st.multiselect(
+                "Select kanji units to allow (kanji from chosen units will be kept; others become kana):",
+                options=all_kanji_unit_labels,
+                key="custom_kanji_units",
+            )
+            extra_kanji_raw = st.text_input(
+                "Optional extra allowed kanji (type characters directly):",
+                value="",
+                placeholder="e.g., 困思",
+            )
+            extra_kanji = {ch for ch in extra_kanji_raw if is_kanji_char(ch)}
+            custom_allowed_kanji = set().union(
+                *(KANJI_UNIT_SETS[u] for u in selected_kanji_units),
+                extra_kanji,
+            )
 
     available_sets = STUDY_CATEGORIES[category]
     study_all = st.checkbox("Study all units")
@@ -707,7 +753,7 @@ if st.session_state.stage == "setup":
         st.write("- The correct answer will be shown after three incorrect guesses.")
         st.write("- Use the exact spelling/phrasing used in the book; capitalization doesn't matter, but if there is a ~, 〜, parentheses, or other grammar element, it should be included. SPACES MATTER. If two meanings are separated by a comma, both are correct; you do not need to enter both.")
         st.write("- Do not include the (な) in な-adjectives.")
-        st.write("- Vocabulary kanji: 'Progress-based' keeps learned kanji and renders unlearned kanji as kana; 'All Kanji' shows full kanji spellings.")
+        st.write("- Vocabulary kanji: 'Progress-based' uses each unit's allowed kanji; 'All Kanji' shows full kanji spellings; 'Custom' lets you pick any combination of kanji units (plus optional extra characters) while substituting unchosen kanji with kana.")
         st.write("- Kanji Reading shows a kanji word and expects the full kana spelling, INCLUDING any hiragana/katakana in the word. E.g., answer「夏休み」 with 「なつやすみ」.")
         st.write("- If you have any problems or ideas for things I could add, message me on LINE or something and I'll see what I can do.")
 
@@ -769,12 +815,17 @@ if st.session_state.stage == "setup":
             elif not entry_keys:
                 st.error("The selected units don't contain any vocabulary.")
             else:
+                active_allowed_kanji = (
+                    custom_allowed_kanji
+                    if vocab_kanji_mode == "Custom"
+                    else combined_allowed_kanji
+                )
                 deck = build_vocabulary_deck(
                     combined_entries,
                     entry_keys,
                     direction,
                     kanji_mode=vocab_kanji_mode,
-                    allowed_kanji=combined_allowed_kanji,
+                    allowed_kanji=active_allowed_kanji,
                 )
                 start_quiz(deck, direction)
                 st.rerun()
@@ -842,45 +893,28 @@ elif st.session_state.stage == "quiz":
         components.html(
             """
             <script>
-            (function() {
-                const parentWindow = window.parent;
-                const parentDocument = parentWindow.document;
+            const parentWindow = window.parent;
+            const parentDocument = parentWindow.document;
 
-                if (parentWindow.__flashcardEnterNextHandler) {
-                    parentDocument.removeEventListener(
-                        "keydown",
-                        parentWindow.__flashcardEnterNextHandler,
-                        true
-                    );
-                }
-
-                parentWindow.__flashcardEnterNextHandler = function(event) {
-                    if (event.key !== "Enter" || event.repeat || event.isComposing) return;
-
-                    const active = parentDocument.activeElement;
-                    const tag = active ? active.tagName.toLowerCase() : "";
-                    if (tag === "input" || tag === "textarea") return;
+            if (!parentWindow.__flashcardEnterNextHandlerInstalled) {
+                parentDocument.addEventListener("keydown", (event) => {
+                    if (event.key !== "Enter" || event.repeat) return;
 
                     const nextButton = Array.from(
                         parentDocument.querySelectorAll("button")
-                    ).find((button) => button.innerText.trim() === "Next" && !button.disabled);
+                    ).find((button) => button.innerText.trim() === "Next");
 
                     if (!nextButton) return;
 
                     event.preventDefault();
                     event.stopImmediatePropagation();
                     nextButton.click();
-                };
-
-                parentDocument.addEventListener(
-                    "keydown",
-                    parentWindow.__flashcardEnterNextHandler,
-                    true
-                );
-            })();
+                }, true);
+                parentWindow.__flashcardEnterNextHandlerInstalled = true;
+            }
             </script>
             """,
-            height=0,
+            height=0
         )
 
 elif st.session_state.stage == "finished":
