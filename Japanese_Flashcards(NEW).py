@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import random
 
 st.set_page_config(page_title="Flashcard Study App", layout="centered")
@@ -912,6 +911,36 @@ elif st.session_state.stage == "quiz":
             """,
             height=0,
         )
+        st.iframe(
+            """
+            <script>
+            (function() {
+                const parentDoc = window.parent.document;
+
+                function focusNextButton() {
+                    const buttons = Array.from(
+                        parentDoc.querySelectorAll('button[kind="primaryFormSubmit"], button')
+                    );
+
+                    const nextBtn = buttons.find(
+                        (b) => b.innerText && b.innerText.trim() === "Next"
+                    );
+
+                    if (nextBtn) {
+                        nextBtn.focus();
+                        return true;
+                    }
+
+            return false;
+                }
+
+        setTimeout(focusNextButton, 50);
+        setTimeout(focusNextButton, 200);
+    })();
+    </script>
+    """,
+    height=0,
+)
 
 elif st.session_state.stage == "finished":
     st.title("Session complete")
