@@ -40,6 +40,103 @@ KANJI_UNIT_SETS = {
     **{f"DD: {unit}": set(chars) for unit, chars in DD_KANJI_BY_UNIT.items()},
 }
 
+nd_unit_13 = {
+    #allowed kanji: nd2 はじめに + unit 13
+    "allowed_kanji": set(ND2_KANJI_BY_UNIT["はじめに"] + ND2_KANJI_BY_UNIT["13"]),
+    "entries": {
+        # Verbs
+        "怠け者": {"reading": ["なまけもの"], "meaning": "Lazy; idle person", "kana_pieces": ["なま", "け", "もの"]},
+        "泳ぐ": {"reading": ["およぐ"], "meaning": "To swim", "kana_pieces": ["およ", "ぐ"]},
+        "遊ぶ": {"reading": ["あそぶ"], "meaning": "To play", "kana_pieces": ["あそ", "ぶ"]},
+        "待つ": {"reading": ["まつ"], "meaning": "To wait", "kana_pieces": ["ま", "つ"]},
+        "貰う": {"reading": ["もらう"], "meaning": "To get, To receive", "kana_pieces": ["もら", "う"]},
+        "話す": {"reading": ["はなす"], "meaning": "To speak", "kana_pieces": ["はな", "す"]},
+        "上げる": {"reading": ["あげる"], "meaning": "To give", "kana_pieces": ["あ", "げ", "る"]},
+        # Adjectives
+        "大好き": {"reading": ["だいすき"], "meaning": "Love", "kana_pieces": ["だい", "すき"]},
+        "好き": {"reading": ["すき"], "meaning": "Like", "kana_pieces": ["すき"]},
+        "まあまあ": {"reading": ["まあまあ"], "meaning": "Fairly; so-so"},
+        "駄目": {"reading": ["だめ"], "meaning": "Cannot stand; no way", "kana_pieces": ["だ", "め"]},
+        "上手": {"reading": ["じょうず"], "meaning": "Be good at; skillful", "kana_pieces": ["じょう", "ず"]},
+        "明るい": {"reading": ["あかるい"], "meaning": "Cheerful", "kana_pieces": ["あか", "る", "い"]},
+        "面白い": {"reading": ["おもしろい"], "meaning": "Humorous; funny", "kana_pieces": ["おも", "しろ", "い"]},
+        "頭がいい": {"reading": ["あたまがいい"], "meaning": "Smart; clever", "kana_pieces": ["あたま", "が", "い", "い"]},
+        "厳しい": {"reading": ["きびしい"], "meaning": "Strict", "kana_pieces": ["きび", "し", "い"]},
+        "真面目": {"reading": ["まじめ"], "meaning": "Serious; earnest", "kana_pieces": ["ま", "じ", "め"]},
+        "親切": {"reading": ["しんせつ"], "meaning": "Kind; helpful", "kana_pieces": ["しん", "せつ"]},
+        "フレンドリー": {"reading": ["フレンドリー; ふれんどりー"], "meaning": "Friendly"},
+        "冷静": {"reading": ["れいせい"], "meaning": "Calm; cool-headed", "kana_pieces": ["れい", "せい"]},
+        "ハンサム": {"reading": ["ハンサム; はんさむ"], "meaning": "Handsome"},
+        # Nouns
+        "相撲": {"reading": ["すもう"], "meaning": "Sumo", "kana_pieces": ["す", "もう"]},
+        "プール": {"reading": ["プール; ぷーる"], "meaning": "Swimming pool"},
+        "ピンポン": {"reading": ["ピンポン; ぴんぽん"], "meaning": "Table tennis"},
+        "旅行": {"reading": ["りょこう"], "meaning": "Travel; trip [-suru]", "kana_pieces": ["りょ", "こう"]},
+        "温泉": {"reading": ["おんせん"], "meaning": "Hot spring", "kana_pieces": ["おん", "せん"]},
+        "アクション": {"reading": ["アクション; あくしょん"], "meaning": "Action"},
+        "コメディー": {"reading": ["コメディー; こめでぃー"], "meaning": "Comedy"},
+        "ホラー": {"reading": ["ホラー; ほらー"], "meaning": "Horror"},
+        "SF": {"reading": ["SF; えすえふ"], "meaning": "Science fiction"},
+        "アニメ": {"reading": ["アニメ; あにめ"], "meaning": "Animation"},
+        "ラブストーリー": {"reading": ["ラブストーリー; らぶすとーりー"], "meaning": "Love story"},
+        "スポーツ": {"reading": ["スポーツ; すぽーつ"], "meaning": "Sport"},
+        "サッカー": {"reading": ["サッカー; さっかー"], "meaning": "Soccer"},
+        "絵": {"reading": ["え"], "meaning": "Painting; drawing; picture", "kana_pieces": ["え"]},
+        "恋人": {"reading": ["こいびと"], "meaning": "Lover", "kana_pieces": ["こい", "びと"]},
+        "子ども": {"reading": ["こども"], "meaning": "Child", "kana_pieces": ["こ", "ども"]},
+        "料理": {"reading": ["りょうり"], "meaning": "Food; dishes; cooking [-suru]", "kana_pieces": ["りょう", "り"]},
+        "カフェ": {"reading": ["カフェ; かふぇ"], "meaning": "Café"},
+        # Adverbs
+        "結構": {"reading": ["けっこう"], "meaning": "Quite", "kana_pieces": ["けっ", "こう"]},
+        "何時でも": {"reading": ["いつも"], "meaning": "Always", "kana_pieces": ["いつ", "で", "も"]},
+        #expressions excluded because they often contain symbols that are difficult to match during testing
+    },
+    "vocab": [
+        "怠け者",
+        "泳ぐ",
+        "遊ぶ",
+        "待つ",
+        "貰う",
+        "話す",
+        "上げる",
+        "大好き",
+        "好き",
+        "まあまあ",
+        "駄目",
+        "上手",
+        "明るい",
+        "面白い",
+        "頭がいい",
+        "厳しい",
+        "真面目",
+        "親切",
+        "フレンドリー",
+        "冷静",
+        "ハンサム",
+        "相撲",
+        "プール",
+        "ピンポン",
+        "旅行",
+        "温泉",
+        "アクション",
+        "コメディー",
+        "ホラー",
+        "SF",
+        "アニメ",
+        "ラブストーリー",
+        "スポーツ",
+        "サッカー",
+        "絵",
+        "恋人",
+        "子ども",
+        "料理",
+        "カフェ",
+        "結構",
+        "何時でも",
+    ],
+    "kanji": ["子", "好", "本", "人", "大", "休"],
+}
+
 dd_unit_1 = {
     # allowed kanji: all of nd2 + dd unit 1
     "allowed_kanji": set(ALL_ND2_KANJI + DD_KANJI_BY_UNIT["1"]),
@@ -352,103 +449,6 @@ dd_unit_5 = {
     },
     "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
     "kanji": ["", "", "", "", "", ""],
-}
-
-nd_unit_13 = {
-    #allowed kanji: nd2 はじめに + unit 13
-    "allowed_kanji": set(ND2_KANJI_BY_UNIT["はじめに"] + ND2_KANJI_BY_UNIT["13"]),
-    "entries": {
-        # Verbs
-        "怠け者": {"reading": ["なまけもの"], "meaning": "Lazy; idle person", "kana_pieces": ["なま", "け", "もの"]},
-        "泳ぐ": {"reading": ["およぐ"], "meaning": "To swim", "kana_pieces": ["およ", "ぐ"]},
-        "遊ぶ": {"reading": ["あそぶ"], "meaning": "To play", "kana_pieces": ["あそ", "ぶ"]},
-        "待つ": {"reading": ["まつ"], "meaning": "To wait", "kana_pieces": ["ま", "つ"]},
-        "貰う": {"reading": ["もらう"], "meaning": "To get, To receive", "kana_pieces": ["もら", "う"]},
-        "話す": {"reading": ["はなす"], "meaning": "To speak", "kana_pieces": ["はな", "す"]},
-        "上げる": {"reading": ["あげる"], "meaning": "To give", "kana_pieces": ["あ", "げ", "る"]},
-        # Adjectives
-        "大好き": {"reading": ["だいすき"], "meaning": "Love", "kana_pieces": ["だい", "すき"]},
-        "好き": {"reading": ["すき"], "meaning": "Like", "kana_pieces": ["すき"]},
-        "まあまあ": {"reading": ["まあまあ"], "meaning": "Fairly; so-so"},
-        "駄目": {"reading": ["だめ"], "meaning": "Cannot stand; no way", "kana_pieces": ["だ", "め"]},
-        "上手": {"reading": ["じょうず"], "meaning": "Be good at; skillful", "kana_pieces": ["じょう", "ず"]},
-        "明るい": {"reading": ["あかるい"], "meaning": "Cheerful", "kana_pieces": ["あか", "る", "い"]},
-        "面白い": {"reading": ["おもしろい"], "meaning": "Humorous; funny", "kana_pieces": ["おも", "しろ", "い"]},
-        "頭がいい": {"reading": ["あたまがいい"], "meaning": "Smart; clever", "kana_pieces": ["あたま", "が", "い", "い"]},
-        "厳しい": {"reading": ["きびしい"], "meaning": "Strict", "kana_pieces": ["きび", "し", "い"]},
-        "真面目": {"reading": ["まじめ"], "meaning": "Serious; earnest", "kana_pieces": ["ま", "じ", "め"]},
-        "親切": {"reading": ["しんせつ"], "meaning": "Kind; helpful", "kana_pieces": ["しん", "せつ"]},
-        "フレンドリー": {"reading": ["フレンドリー; ふれんどりー"], "meaning": "Friendly"},
-        "冷静": {"reading": ["れいせい"], "meaning": "Calm; cool-headed", "kana_pieces": ["れい", "せい"]},
-        "ハンサム": {"reading": ["ハンサム; はんさむ"], "meaning": "Handsome"},
-        # Nouns
-        "相撲": {"reading": ["すもう"], "meaning": "Sumo", "kana_pieces": ["す", "もう"]},
-        "プール": {"reading": ["プール; ぷーる"], "meaning": "Swimming pool"},
-        "ピンポン": {"reading": ["ピンポン; ぴんぽん"], "meaning": "Table tennis"},
-        "旅行": {"reading": ["りょこう"], "meaning": "Travel; trip [-suru]", "kana_pieces": ["りょ", "こう"]},
-        "温泉": {"reading": ["おんせん"], "meaning": "Hot spring", "kana_pieces": ["おん", "せん"]},
-        "アクション": {"reading": ["アクション; あくしょん"], "meaning": "Action"},
-        "コメディー": {"reading": ["コメディー; こめでぃー"], "meaning": "Comedy"},
-        "ホラー": {"reading": ["ホラー; ほらー"], "meaning": "Horror"},
-        "SF": {"reading": ["SF; えすえふ"], "meaning": "Science fiction"},
-        "アニメ": {"reading": ["アニメ; あにめ"], "meaning": "Animation"},
-        "ラブストーリー": {"reading": ["ラブストーリー; らぶすとーりー"], "meaning": "Love story"},
-        "スポーツ": {"reading": ["スポーツ; すぽーつ"], "meaning": "Sport"},
-        "サッカー": {"reading": ["サッカー; さっかー"], "meaning": "Soccer"},
-        "絵": {"reading": ["え"], "meaning": "Painting; drawing; picture", "kana_pieces": ["え"]},
-        "恋人": {"reading": ["こいびと"], "meaning": "Lover", "kana_pieces": ["こい", "びと"]},
-        "子ども": {"reading": ["こども"], "meaning": "Child", "kana_pieces": ["こ", "ども"]},
-        "料理": {"reading": ["りょうり"], "meaning": "Food; dishes; cooking [-suru]", "kana_pieces": ["りょう", "り"]},
-        "カフェ": {"reading": ["カフェ; かふぇ"], "meaning": "Café"},
-        # Adverbs
-        "結構": {"reading": ["けっこう"], "meaning": "Quite", "kana_pieces": ["けっ", "こう"]},
-        "何時でも": {"reading": ["いつも"], "meaning": "Always", "kana_pieces": ["いつ", "で", "も"]},
-        #expressions excluded because they often contain symbols that are difficult to match during testing
-    },
-    "vocab": [
-        "怠け者",
-        "泳ぐ",
-        "遊ぶ",
-        "待つ",
-        "貰う",
-        "話す",
-        "上げる",
-        "大好き",
-        "好き",
-        "まあまあ",
-        "駄目",
-        "上手",
-        "明るい",
-        "面白い",
-        "頭がいい",
-        "厳しい",
-        "真面目",
-        "親切",
-        "フレンドリー",
-        "冷静",
-        "ハンサム",
-        "相撲",
-        "プール",
-        "ピンポン",
-        "旅行",
-        "温泉",
-        "アクション",
-        "コメディー",
-        "ホラー",
-        "SF",
-        "アニメ",
-        "ラブストーリー",
-        "スポーツ",
-        "サッカー",
-        "絵",
-        "恋人",
-        "子ども",
-        "料理",
-        "カフェ",
-        "結構",
-        "何時でも",
-    ],
-    "kanji": ["子", "好", "本", "人", "大", "休"],
 }
 
 index = {
@@ -767,9 +767,10 @@ if st.session_state.stage == "setup":
             default=list(available_sets.keys())[:1]
         )
 
-    with st.expander("Btw"):
+    with st.expander("PLEASE READ"):
         st.write("- The correct answer will be shown after three incorrect guesses.")
         st.write("- Use the exact spelling/phrasing used in the book; capitalization doesn't matter, but if there is a ~, 〜, parentheses, or other grammar element, it should be included. SPACES MATTER. If two meanings are separated by a comma, both are correct; you do not need to enter both.")
+        st.write("- If it is a verb, include \"To\" before the verb. E.g., answer「食べる」with \"To eat.\"")
         st.write("- Do not include the (な) in な-adjectives.")
         st.write("- Vocabulary kanji: 'Progress-based' uses each unit's allowed kanji; 'All Kanji' shows full kanji spellings; 'Custom' lets you pick any combination of kanji units (plus optional extra characters) while substituting unchosen kanji with kana.")
         st.write("- Kanji Reading shows a kanji word and expects the full kana spelling, INCLUDING any hiragana/katakana in the word. E.g., answer「夏休み」 with 「なつやすみ」.")
@@ -997,6 +998,7 @@ elif st.session_state.stage == "quiz":
 
 
     # NEXT CARD SCREEN
+    #note to self: next works inconsistently at best. no idea why, sometimes you must simply accept defeat.
     else:
 
         if st.session_state.feedback_type == "success":
