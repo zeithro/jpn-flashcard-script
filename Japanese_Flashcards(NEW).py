@@ -995,6 +995,7 @@ elif st.session_state.stage == "quiz":
         if st.session_state.feedback_type == "warning":
             st.warning(st.session_state.feedback)
 
+
     # NEXT CARD SCREEN
     else:
 
@@ -1004,23 +1005,49 @@ elif st.session_state.stage == "quiz":
         elif st.session_state.feedback_type == "error":
             st.error(st.session_state.feedback)
 
-        # Enter and clicking Next both advance the card.
-        # No JavaScript or iframe required.
-        with st.form(
-            key=f"next_form_{words_done}_{st.session_state.attempts}"
-        ):
+        st.button(
+            "Next",
+            key=f"next_button_{words_done}_{st.session_state.attempts}",
+            type="primary",
+            use_container_width=True,
+            on_click=next_word,
+        )
 
-            st.caption("Press Enter to continue, or click Next.")
+        import streamlit.components.v1 as components
 
-            next_submitted = st.form_submit_button(
-                "Next",
-                type="primary",
-                use_container_width=True
-            )
+        components.html(
+            """
+            <script>
+            const doc = window.parent.document;
 
-        if next_submitted:
-            next_word()
-            st.rerun()
+            if (!doc._flashcardEnterHandler) {
+                doc._flashcardEnterHandler = function(event) {
+                    if (event.key !== "Enter") return;
+
+                    const nextButton = doc.querySelector(
+                        'button[kind="primary"]'
+                    );
+
+                    if (nextButton &&
+                        nextButton.innerText.trim() === "Next") {
+
+                        event.preventDefault();
+                        event.stopPropagation();
+                        nextButton.click();
+                    }
+                };
+
+                doc.addEventListener(
+                    "keydown",
+                    doc._flashcardEnterHandler,
+                    true
+                );
+            }
+            </script>
+            """,
+            height=0,
+        )
+
 
 
 # FINISHED SCREEN
