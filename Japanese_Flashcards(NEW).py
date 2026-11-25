@@ -792,8 +792,8 @@ elif st.session_state.stage == "quiz":
     st.subheader(f"{st.session_state.direction}: {display_prompt}")
 
     if not st.session_state.waiting_next:
-        with st.form(key=f"form_{words_done}_{st.session_state.attempts}", clear_on_submit=True):
-            guess = st.text_input("Your answer:", key=f"input_{words_done}_{st.session_state.attempts}").strip()
+        with st.form(key=f"form_{words_done}", clear_on_submit=True):
+            guess = st.text_input("Your answer:", key=f"input_{words_done}").strip()
             col1, col2 = st.columns(2)
             with col1:
                 submitted = st.form_submit_button("Submit", type="primary", use_container_width=True)
@@ -833,10 +833,10 @@ elif st.session_state.stage == "quiz":
         elif st.session_state.feedback_type == "error":
             st.error(st.session_state.feedback)
 
-        with st.form(key=f"next_form_{words_done}", clear_on_submit=True):
+        with st.form(key=f"form_{words_done}", clear_on_submit=True):
             st.text_input(
                 "Press Enter to continue, or click Next:",
-                key=f"next_input_{words_done}"
+                key=f"input_{words_done}"
             )
             if st.form_submit_button("Next", type="primary", use_container_width=True):
                 next_word()
