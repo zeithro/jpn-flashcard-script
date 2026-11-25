@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import random
 
 st.set_page_config(page_title="Flashcard Study App", layout="centered")
@@ -34,108 +35,6 @@ DD_KANJI_BY_UNIT = {
 }
 
 ALL_ND2_KANJI = [k for chars in ND2_KANJI_BY_UNIT.values() for k in chars]
-
-KANJI_UNIT_SETS = {
-    **{f"ND2: {unit}": set(chars) for unit, chars in ND2_KANJI_BY_UNIT.items()},
-    **{f"DD: {unit}": set(chars) for unit, chars in DD_KANJI_BY_UNIT.items()},
-}
-
-nd_unit_13 = {
-    #allowed kanji: nd2 はじめに + unit 13
-    "allowed_kanji": set(ND2_KANJI_BY_UNIT["はじめに"] + ND2_KANJI_BY_UNIT["13"]),
-    "entries": {
-        # Verbs
-        "怠け者": {"reading": ["なまけもの"], "meaning": "Lazy; idle person", "kana_pieces": ["なま", "け", "もの"]},
-        "泳ぐ": {"reading": ["およぐ"], "meaning": "To swim", "kana_pieces": ["およ", "ぐ"]},
-        "遊ぶ": {"reading": ["あそぶ"], "meaning": "To play", "kana_pieces": ["あそ", "ぶ"]},
-        "待つ": {"reading": ["まつ"], "meaning": "To wait", "kana_pieces": ["ま", "つ"]},
-        "貰う": {"reading": ["もらう"], "meaning": "To get, To receive", "kana_pieces": ["もら", "う"]},
-        "話す": {"reading": ["はなす"], "meaning": "To speak", "kana_pieces": ["はな", "す"]},
-        "上げる": {"reading": ["あげる"], "meaning": "To give", "kana_pieces": ["あ", "げ", "る"]},
-        # Adjectives
-        "大好き": {"reading": ["だいすき"], "meaning": "Love", "kana_pieces": ["だい", "すき"]},
-        "好き": {"reading": ["すき"], "meaning": "Like", "kana_pieces": ["すき"]},
-        "まあまあ": {"reading": ["まあまあ"], "meaning": "Fairly; so-so"},
-        "駄目": {"reading": ["だめ"], "meaning": "Cannot stand; no way", "kana_pieces": ["だ", "め"]},
-        "上手": {"reading": ["じょうず"], "meaning": "Be good at; skillful", "kana_pieces": ["じょう", "ず"]},
-        "明るい": {"reading": ["あかるい"], "meaning": "Cheerful", "kana_pieces": ["あか", "る", "い"]},
-        "面白い": {"reading": ["おもしろい"], "meaning": "Humorous; funny", "kana_pieces": ["おも", "しろ", "い"]},
-        "頭がいい": {"reading": ["あたまがいい"], "meaning": "Smart; clever", "kana_pieces": ["あたま", "が", "い", "い"]},
-        "厳しい": {"reading": ["きびしい"], "meaning": "Strict", "kana_pieces": ["きび", "し", "い"]},
-        "真面目": {"reading": ["まじめ"], "meaning": "Serious; earnest", "kana_pieces": ["ま", "じ", "め"]},
-        "親切": {"reading": ["しんせつ"], "meaning": "Kind; helpful", "kana_pieces": ["しん", "せつ"]},
-        "フレンドリー": {"reading": ["フレンドリー; ふれんどりー"], "meaning": "Friendly"},
-        "冷静": {"reading": ["れいせい"], "meaning": "Calm; cool-headed", "kana_pieces": ["れい", "せい"]},
-        "ハンサム": {"reading": ["ハンサム; はんさむ"], "meaning": "Handsome"},
-        # Nouns
-        "相撲": {"reading": ["すもう"], "meaning": "Sumo", "kana_pieces": ["す", "もう"]},
-        "プール": {"reading": ["プール; ぷーる"], "meaning": "Swimming pool"},
-        "ピンポン": {"reading": ["ピンポン; ぴんぽん"], "meaning": "Table tennis"},
-        "旅行": {"reading": ["りょこう"], "meaning": "Travel; trip [-suru]", "kana_pieces": ["りょ", "こう"]},
-        "温泉": {"reading": ["おんせん"], "meaning": "Hot spring", "kana_pieces": ["おん", "せん"]},
-        "アクション": {"reading": ["アクション; あくしょん"], "meaning": "Action"},
-        "コメディー": {"reading": ["コメディー; こめでぃー"], "meaning": "Comedy"},
-        "ホラー": {"reading": ["ホラー; ほらー"], "meaning": "Horror"},
-        "SF": {"reading": ["SF; えすえふ"], "meaning": "Science fiction"},
-        "アニメ": {"reading": ["アニメ; あにめ"], "meaning": "Animation"},
-        "ラブストーリー": {"reading": ["ラブストーリー; らぶすとーりー"], "meaning": "Love story"},
-        "スポーツ": {"reading": ["スポーツ; すぽーつ"], "meaning": "Sport"},
-        "サッカー": {"reading": ["サッカー; さっかー"], "meaning": "Soccer"},
-        "絵": {"reading": ["え"], "meaning": "Painting; drawing; picture", "kana_pieces": ["え"]},
-        "恋人": {"reading": ["こいびと"], "meaning": "Lover", "kana_pieces": ["こい", "びと"]},
-        "子ども": {"reading": ["こども"], "meaning": "Child", "kana_pieces": ["こ", "ども"]},
-        "料理": {"reading": ["りょうり"], "meaning": "Food; dishes; cooking [-suru]", "kana_pieces": ["りょう", "り"]},
-        "カフェ": {"reading": ["カフェ; かふぇ"], "meaning": "Café"},
-        # Adverbs
-        "結構": {"reading": ["けっこう"], "meaning": "Quite", "kana_pieces": ["けっ", "こう"]},
-        "何時でも": {"reading": ["いつも"], "meaning": "Always", "kana_pieces": ["いつ", "で", "も"]},
-        #expressions excluded because they often contain symbols that are difficult to match during testing
-    },
-    "vocab": [
-        "怠け者",
-        "泳ぐ",
-        "遊ぶ",
-        "待つ",
-        "貰う",
-        "話す",
-        "上げる",
-        "大好き",
-        "好き",
-        "まあまあ",
-        "駄目",
-        "上手",
-        "明るい",
-        "面白い",
-        "頭がいい",
-        "厳しい",
-        "真面目",
-        "親切",
-        "フレンドリー",
-        "冷静",
-        "ハンサム",
-        "相撲",
-        "プール",
-        "ピンポン",
-        "旅行",
-        "温泉",
-        "アクション",
-        "コメディー",
-        "ホラー",
-        "SF",
-        "アニメ",
-        "ラブストーリー",
-        "スポーツ",
-        "サッカー",
-        "絵",
-        "恋人",
-        "子ども",
-        "料理",
-        "カフェ",
-        "結構",
-        "何時でも",
-    ],
-    "kanji": ["子", "好", "本", "人", "大", "休"],
-}
 
 dd_unit_1 = {
     # allowed kanji: all of nd2 + dd unit 1
@@ -184,32 +83,32 @@ dd_unit_1 = {
         "アリ": {"reading": ["アリ; あり"], "meaning": "Ant"},
         "明かり": {"reading": ["あかり"], "meaning": "Light", "kana_pieces": ["あ", "か", "り"]},
         #Verbs
-        "降りる": {"reading": ["おりる"], "meaning": "To get off", "kana_pieces": ["お", "り", "る"]},
-        "着く": {"reading": ["つく"], "meaning": "To arrive", "kana_pieces": ["つ", "く"]},
-        "出る": {"reading": ["でる"], "meaning": "To get out, To leave", "kana_pieces": ["で", "る"]},
-        "決める": {"reading": ["きめる"], "meaning": "To decide", "kana_pieces": ["き", "め", "る"]},
-        "習う": {"reading": ["ならう"], "meaning": "To learn", "kana_pieces": ["なら", "う"]},
-        "世話をする": {"reading": ["せわをする"], "meaning": "To take care, To look after", "kana_pieces": ["せ", "わ", "を", "す", "る"]},
-        "ペットを飼う": {"reading": ["ペットをかう; ぺっとをかう"], "meaning": "To have a pet", "kana_pieces": ["ペ", "ッ", "ト", "を", "か", "う"]},
-        "泊まる": {"reading": ["とまる"], "meaning": "To stay over (night)", "kana_pieces": ["と", "ま", "る"]},
-        "呉れる": {"reading": ["くれる"], "meaning": "To give (me)", "kana_pieces": ["く", "れ", "る"]},
-        "奢る": {"reading": ["おごる"], "meaning": "To treat (someone)", "kana_pieces": ["おご", "る"]},
-        "連れて行く": {"reading": ["つれていく"], "meaning": "To take (someone)", "kana_pieces": ["つ", "れ", "て", "い", "く"]},
-        "おしゃれをする": {"reading": ["おしゃれをする"], "meaning": "To dress up"},
-        "サボる": {"reading": ["サボる; さぼる"], "meaning": "To skip (a class)"},
-        "持つ": {"reading": ["もつ"], "meaning": "To hold, To have", "kana_pieces": ["も", "つ"]},
-        "諦める": {"reading": ["あきらめる"], "meaning": "To give up", "kana_pieces": ["あきら", "め", "る"]},
-        "困る": {"reading": ["こまる"], "meaning": "To be in need, To be in trouble", "kana_pieces": ["こま", "る"]},
-        "考える": {"reading": ["かんがえる"], "meaning": "To think, To consider", "kana_pieces": ["かんが", "え", "る"]},
-        "壊す": {"reading": ["こわす"], "meaning": "To break", "kana_pieces": ["こわ", "す"]},
-        "オイオイ泣く": {"reading": ["オイオイなく; おいおいなく"], "meaning": "To cry one's heart out", "kana_pieces": ["オ", "イ", "オ", "イ", "な", "く"]},
-        "笑う": {"reading": ["わらう"], "meaning": "To laugh", "kana_pieces": ["わら", "う"]},
-        "働く": {"reading": ["はたらく"], "meaning": "To work", "kana_pieces": ["はたら", "く"]},
-        "バイオリンを弾く": {"reading": ["バイオリンをひく; ばいおりんをひく"], "meaning": "To play a violin", "kana_pieces": ["バ", "イ", "オ", "リ", "ン", "を", "ひ", "く"]},
-        "答える": {"reading": ["こたえる"], "meaning": "To answer", "kana_pieces": ["こた", "え", "る"]},
-        "始まる": {"reading": ["はじまる"], "meaning": "To start, To begin", "kana_pieces": ["はじ", "ま", "る"]},
-        "探す": {"reading": ["さがす"], "meaning": "To look for, To search", "kana_pieces": ["さが", "す"]},
-        "点く": {"reading": ["つく"], "meaning": "To turn on (lights)", "kana_pieces": ["つ", "く"]},
+        "降りる": {"reading": ["おりる"], "meaning": "Get off", "kana_pieces": ["お", "り", "る"]},
+        "着く": {"reading": ["つく"], "meaning": "Arrive", "kana_pieces": ["つ", "く"]},
+        "出る": {"reading": ["でる"], "meaning": "Get out; Leave", "kana_pieces": ["で", "る"]},
+        "決める": {"reading": ["きめる"], "meaning": "Decide", "kana_pieces": ["き", "め", "る"]},
+        "習う": {"reading": ["ならう"], "meaning": "Learn", "kana_pieces": ["なら", "う"]},
+        "世話をする": {"reading": ["せわをする"], "meaning": "Take care; Look after", "kana_pieces": ["せ", "わ", "を", "す", "る"]},
+        "ペットを飼う": {"reading": ["ペットをかう; ぺっとをかう"], "meaning": "Have a pet", "kana_pieces": ["ペ", "ッ", "ト", "を", "か", "う"]},
+        "泊まる": {"reading": ["とまる"], "meaning": "Stay over (night)", "kana_pieces": ["と", "ま", "る"]},
+        "呉れる": {"reading": ["くれる"], "meaning": "Give (me)", "kana_pieces": ["く", "れ", "る"]},
+        "奢る": {"reading": ["おごる"], "meaning": "Treat (someone)", "kana_pieces": ["おご", "る"]},
+        "連れて行く": {"reading": ["つれていく"], "meaning": "Take (someone)", "kana_pieces": ["つ", "れ", "て", "い", "く"]},
+        "おしゃれをする": {"reading": ["おしゃれをする"], "meaning": "Dress up"},
+        "サボる": {"reading": ["サボる; さぼる"], "meaning": "Skip (a class)"},
+        "持つ": {"reading": ["もつ"], "meaning": "Hold; Have", "kana_pieces": ["も", "つ"]},
+        "諦める": {"reading": ["あきらめる"], "meaning": "Give up", "kana_pieces": ["あきら", "め", "る"]},
+        "困る": {"reading": ["こまる"], "meaning": "Be in need; In trouble", "kana_pieces": ["こま", "る"]},
+        "考える": {"reading": ["かんがえる"], "meaning": "Think; Consider", "kana_pieces": ["かんが", "え", "る"]},
+        "壊す": {"reading": ["こわす"], "meaning": "Break", "kana_pieces": ["こわ", "す"]},
+        "オイオイ泣く": {"reading": ["オイオイなく; おいおいなく"], "meaning": "Cry one's heart out", "kana_pieces": ["オ", "イ", "オ", "イ", "な", "く"]},
+        "笑う": {"reading": ["わらう"], "meaning": "Laugh", "kana_pieces": ["わら", "う"]},
+        "働く": {"reading": ["はたらく"], "meaning": "Work", "kana_pieces": ["はたら", "く"]},
+        "バイオリンを弾く": {"reading": ["バイオリンをひく; ばいおりんをひく"], "meaning": "Play a violin", "kana_pieces": ["バ", "イ", "オ", "リ", "ン", "を", "ひ", "く"]},
+        "答える": {"reading": ["こたえる"], "meaning": "Answer", "kana_pieces": ["こた", "え", "る"]},
+        "始まる": {"reading": ["はじまる"], "meaning": "(It) starts; begins", "kana_pieces": ["はじ", "ま", "る"]},
+        "探す": {"reading": ["さがす"], "meaning": "Look for; Search", "kana_pieces": ["さが", "す"]},
+        "点く": {"reading": ["つく"], "meaning": "(Lights) turn on", "kana_pieces": ["つ", "く"]},
         #Adjectives
         "シャイ": {"reading": ["シャイ"], "meaning": "Shy"},
         "悪戯": {"reading": ["いたずら"], "meaning": "Mischievous", "kana_pieces": ["いた", "ずら"]},
@@ -227,7 +126,7 @@ dd_unit_1 = {
         "ある山": {"reading": ["あるやま"], "meaning": "A certain mountain", "kana_pieces": ["あ", "る", "やま"]},
         "お腹がペコペコです": {"reading": ["おなかがペコペコです; おなかがぺこぺこです"], "meaning": "I'm starving", "kana_pieces": ["お", "なか", "が", "ペ", "コ", "ペ", "コ", "で", "す"]},
         #Kanji terms
-        "教える": {"reading": ["おしえる"], "meaning": "To teach, To tell", "kana_pieces": ["おし", "え", "る"]},
+        "教える": {"reading": ["おしえる"], "meaning": "To teach; To tell", "kana_pieces": ["おし", "え", "る"]},
         "仕事": {"reading": ["しごと"], "meaning": "Job; Occupation", "kana_pieces": ["し", "ごと"]},
         "火事": {"reading": ["かじ"], "meaning": "Fire", "kana_pieces": ["か", "じ"]},
         "事故": {"reading": ["じこ"], "meaning": "Accident", "kana_pieces": ["じ", "こ"]},
@@ -451,6 +350,103 @@ dd_unit_5 = {
     "kanji": ["", "", "", "", "", ""],
 }
 
+nd_unit_13 = {
+    #allowed kanji: nd2 はじめに + unit 13
+    "allowed_kanji": set(ND2_KANJI_BY_UNIT["はじめに"] + ND2_KANJI_BY_UNIT["13"]),
+    "entries": {
+        # Verbs
+        "怠け者": {"reading": ["なまけもの"], "meaning": "Lazy; idle person", "kana_pieces": ["なま", "け", "もの"]},
+        "泳ぐ": {"reading": ["およぐ"], "meaning": "Swim", "kana_pieces": ["およ", "ぐ"]},
+        "遊ぶ": {"reading": ["あそぶ"], "meaning": "Play", "kana_pieces": ["あそ", "ぶ"]},
+        "待つ": {"reading": ["まつ"], "meaning": "Wait", "kana_pieces": ["ま", "つ"]},
+        "貰う": {"reading": ["もらう"], "meaning": "Get; receive", "kana_pieces": ["もら", "う"]},
+        "話す": {"reading": ["はなす"], "meaning": "Speak", "kana_pieces": ["はな", "す"]},
+        "上げる": {"reading": ["あげる"], "meaning": "Give", "kana_pieces": ["あ", "げ", "る"]},
+        # Adjectives
+        "大好き": {"reading": ["だいすき"], "meaning": "Love", "kana_pieces": ["だい", "すき"]},
+        "好き": {"reading": ["すき"], "meaning": "Like", "kana_pieces": ["すき"]},
+        "まあまあ": {"reading": ["まあまあ"], "meaning": "Fairly; so-so"},
+        "駄目": {"reading": ["だめ"], "meaning": "Cannot stand; no way", "kana_pieces": ["だ", "め"]},
+        "上手": {"reading": ["じょうず"], "meaning": "Be good at; skillful", "kana_pieces": ["じょう", "ず"]},
+        "明るい": {"reading": ["あかるい"], "meaning": "Cheerful", "kana_pieces": ["あか", "る", "い"]},
+        "面白い": {"reading": ["おもしろい"], "meaning": "Humorous; funny", "kana_pieces": ["おも", "しろ", "い"]},
+        "頭がいい": {"reading": ["あたまがいい"], "meaning": "Smart; clever", "kana_pieces": ["あたま", "が", "い", "い"]},
+        "厳しい": {"reading": ["きびしい"], "meaning": "Strict", "kana_pieces": ["きび", "し", "い"]},
+        "真面目": {"reading": ["まじめ"], "meaning": "Serious; earnest", "kana_pieces": ["ま", "じ", "め"]},
+        "親切": {"reading": ["しんせつ"], "meaning": "Kind; helpful", "kana_pieces": ["しん", "せつ"]},
+        "フレンドリー": {"reading": ["フレンドリー; ふれんどりー"], "meaning": "Friendly"},
+        "冷静": {"reading": ["れいせい"], "meaning": "Calm; cool-headed", "kana_pieces": ["れい", "せい"]},
+        "ハンサム": {"reading": ["ハンサム; はんさむ"], "meaning": "Handsome"},
+        # Nouns
+        "相撲": {"reading": ["すもう"], "meaning": "Sumo", "kana_pieces": ["す", "もう"]},
+        "プール": {"reading": ["プール; ぷーる"], "meaning": "Swimming pool"},
+        "ピンポン": {"reading": ["ピンポン; ぴんぽん"], "meaning": "Table tennis"},
+        "旅行": {"reading": ["りょこう"], "meaning": "Travel; trip [-suru]", "kana_pieces": ["りょ", "こう"]},
+        "温泉": {"reading": ["おんせん"], "meaning": "Hot spring", "kana_pieces": ["おん", "せん"]},
+        "アクション": {"reading": ["アクション; あくしょん"], "meaning": "Action"},
+        "コメディー": {"reading": ["コメディー; こめでぃー"], "meaning": "Comedy"},
+        "ホラー": {"reading": ["ホラー; ほらー"], "meaning": "Horror"},
+        "SF": {"reading": ["SF; えすえふ"], "meaning": "Science fiction"},
+        "アニメ": {"reading": ["アニメ; あにめ"], "meaning": "Animation"},
+        "ラブストーリー": {"reading": ["ラブストーリー; らぶすとーりー"], "meaning": "Love story"},
+        "スポーツ": {"reading": ["スポーツ; すぽーつ"], "meaning": "Sport"},
+        "サッカー": {"reading": ["サッカー; さっかー"], "meaning": "Soccer"},
+        "絵": {"reading": ["え"], "meaning": "Painting; drawing; picture", "kana_pieces": ["え"]},
+        "恋人": {"reading": ["こいびと"], "meaning": "Lover", "kana_pieces": ["こい", "びと"]},
+        "子ども": {"reading": ["こども"], "meaning": "Child", "kana_pieces": ["こ", "ども"]},
+        "料理": {"reading": ["りょうり"], "meaning": "Food; dishes; cooking [-suru]", "kana_pieces": ["りょう", "り"]},
+        "カフェ": {"reading": ["カフェ; かふぇ"], "meaning": "Café"},
+        # Adverbs
+        "結構": {"reading": ["けっこう"], "meaning": "Quite", "kana_pieces": ["けっ", "こう"]},
+        "何時でも": {"reading": ["いつも"], "meaning": "Always", "kana_pieces": ["いつ", "で", "も"]},
+        #expressions excluded because they often contain symbols that are difficult to match during testing
+    },
+    "vocab": [
+        "怠け者",
+        "泳ぐ",
+        "遊ぶ",
+        "待つ",
+        "貰う",
+        "話す",
+        "上げる",
+        "大好き",
+        "好き",
+        "まあまあ",
+        "駄目",
+        "上手",
+        "明るい",
+        "面白い",
+        "頭がいい",
+        "厳しい",
+        "真面目",
+        "親切",
+        "フレンドリー",
+        "冷静",
+        "ハンサム",
+        "相撲",
+        "プール",
+        "ピンポン",
+        "旅行",
+        "温泉",
+        "アクション",
+        "コメディー",
+        "ホラー",
+        "SF",
+        "アニメ",
+        "ラブストーリー",
+        "スポーツ",
+        "サッカー",
+        "絵",
+        "恋人",
+        "子ども",
+        "料理",
+        "カフェ",
+        "結構",
+        "何時でも",
+    ],
+    "kanji": ["子", "好", "本", "人", "大", "休"],
+}
+
 index = {
     "allowed_kanji": set(ALL_ND2_KANJI + [k for chars in DD_KANJI_BY_UNIT.values() for k in chars]),
     "entries": {
@@ -480,31 +476,46 @@ index = {
 }
 
 jlpt_n5 = {
-    "allowed_kanji": set(ALL_ND2_KANJI + [k for chars in DD_KANJI_BY_UNIT.values() for k in chars]),
-    "entries": {
-        "ENTRY_01": {"reading": [""], "meaning": ""},
-        "ENTRY_02": {"reading": [""], "meaning": ""},
-        "ENTRY_03": {"reading": [""], "meaning": ""},
-        "ENTRY_04": {"reading": [""], "meaning": ""},
-        "ENTRY_05": {"reading": [""], "meaning": ""},
-        "ENTRY_06": {"reading": [""], "meaning": ""},
-        "ENTRY_07": {"reading": [""], "meaning": ""},
-        "ENTRY_08": {"reading": [""], "meaning": ""},
-        "ENTRY_09": {"reading": [""], "meaning": ""},
-        "ENTRY_10": {"reading": [""], "meaning": ""},
-        "ENTRY_11": {"reading": [""], "meaning": ""},
-        "ENTRY_12": {"reading": [""], "meaning": ""},
-        "ENTRY_13": {"reading": [""], "meaning": ""},
-        "ENTRY_14": {"reading": [""], "meaning": ""},
-        "ENTRY_15": {"reading": [""], "meaning": ""},
-        "ENTRY_16": {"reading": [""], "meaning": ""},
-        "ENTRY_17": {"reading": [""], "meaning": ""},
-        "ENTRY_18": {"reading": [""], "meaning": ""},
-        "ENTRY_19": {"reading": [""], "meaning": ""},
-        "ENTRY_20": {"reading": [""], "meaning": ""},
-    },
-    "vocab": ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
-    "kanji": ["", "", "", "", "", ""],
+    "kanji_only": True,
+    "entries": {},
+    "vocab": [],
+    "kanji": [
+        "人", "一", "日", "大", "年", "出", "本", "中", "子", "見",
+        "国", "上", "分", "生", "行", "二", "間", "時", "気", "十",
+        "女", "三", "前", "入", "小", "後", "長", "下", "学", "月",
+        "何", "来", "話", "山", "高", "今", "書", "五", "名", "金",
+        "男", "外", "四", "先", "川", "東", "聞", "語", "九", "食",
+        "八", "水", "天", "木", "六", "万", "白", "七", "円", "電",
+        "父", "北", "車", "母", "半", "百", "土", "西", "読", "千",
+        "校", "右", "南", "左", "友", "火", "毎", "雨", "休", "午",
+    ],
+}
+
+jlpt_n4 = {
+    "kanji_only": True,
+    "entries": {},
+    "vocab": [],
+    "kanji": [
+        # N4 1-100
+        "言", "手", "自", "者", "事", "思", "会", "家", "的", "方",
+        "地", "目", "場", "代", "私", "立", "物", "田", "体", "動",
+        "社", "知", "理", "同", "心", "発", "作", "新", "世", "度",
+        "明", "力", "意", "用", "主", "通", "文", "屋", "業", "持",
+        "道", "身", "不", "口", "多", "野", "考", "開", "教", "近",
+        "以", "問", "正", "真", "味", "界", "無", "少", "海", "切",
+        "重", "集", "員", "公", "画", "死", "安", "親", "強", "使",
+        "朝", "題", "仕", "京", "足", "品", "着", "別", "音", "元",
+        "特", "風", "夜", "空", "有", "起", "運", "料", "楽", "色",
+        "帰", "歩", "悪", "広", "店", "町", "住", "売", "待", "古",
+        # N4 101-170
+        "始", "終", "計", "院", "送", "族", "映", "買", "病", "早",
+        "質", "台", "室", "可", "建", "転", "医", "止", "字", "工",
+        "急", "図", "黒", "花", "英", "走", "青", "答", "紙", "歌",
+        "注", "赤", "春", "館", "旅", "験", "写", "去", "研", "飲",
+        "肉", "服", "銀", "茶", "究", "洋", "兄", "秋", "堂", "週",
+        "習", "試", "夏", "弟", "鳥", "犬", "夕", "魚", "借", "飯",
+        "駅", "昼", "冬", "姉", "曜", "漢", "牛", "妹", "貸", "勉",
+    ],
 }
 
 STUDY_UNITS = {
@@ -524,12 +535,12 @@ STUDY_CATEGORIES = {
     "Vocabulary": {
         name: unit
         for name, unit in STUDY_UNITS.items()
-        if unit["vocab"]
+        if not unit.get("kanji_only", False) and unit.get("vocab")
     },
     "Kanji": {
         name: unit
         for name, unit in STUDY_UNITS.items()
-        if unit["kanji"]
+        if unit.get("kanji")
     },
 }
 
@@ -626,7 +637,7 @@ def render_progress_term(written, entry, allowed_kanji):
 
 def build_vocabulary_deck(entries, entry_keys, direction, kanji_mode="All Kanji", allowed_kanji=None):
     deck = {}
-    use_filtered_kanji = (kanji_mode in ("Progress-based", "Custom")) and (allowed_kanji is not None)
+    use_progress = (kanji_mode == "Progress-based") and (allowed_kanji is not None)
 
     if direction == "ENG to JPN":
         for written in entry_keys:
@@ -636,7 +647,7 @@ def build_vocabulary_deck(entries, entry_keys, direction, kanji_mode="All Kanji"
                 for reading in entry["reading"]
                 for answer in split_answers(reading)
             ]
-            if use_filtered_kanji:
+            if use_progress:
                 display_form = render_progress_term(written, entry, allowed_kanji)
                 accepted = readings + [display_form, written]
             else:
@@ -647,7 +658,7 @@ def build_vocabulary_deck(entries, entry_keys, direction, kanji_mode="All Kanji"
             entry = entries[written]
             prompt_text = (
                 render_progress_term(written, entry, allowed_kanji)
-                if use_filtered_kanji
+                if use_progress
                 else written
             )
             meanings = [part.lower() for part in split_answers(entry["meaning"])]
@@ -695,7 +706,6 @@ def next_word():
     else:
         st.session_state.stage = "finished"
 
-
 # SETUP SCREEN
 if st.session_state.stage == "setup":
     st.title("Flashcard Study App")
@@ -705,8 +715,6 @@ if st.session_state.stage == "setup":
         list(STUDY_CATEGORIES.keys()),
         horizontal=True
     )
-
-    custom_allowed_kanji = None
 
     if category == "Kanji":
         kanji_mode = st.radio(
@@ -724,66 +732,9 @@ if st.session_state.stage == "setup":
         )
         vocab_kanji_mode = st.radio(
             "Vocabulary kanji:",
-            ["Progress-based", "All Kanji", "Custom"],
+            ["Progress-based", "All Kanji"],
             horizontal=True
         )
-
-        if vocab_kanji_mode == "Custom":
-            all_kanji_unit_labels = list(KANJI_UNIT_SETS.keys())
-
-            if "custom_kanji_units" not in st.session_state:
-                st.session_state.custom_kanji_units = [
-                    "ND2: はじめに",
-                    "ND2: 13"
-                ]
-
-            preset_col1, preset_col2, preset_col3 = st.columns([2, 1, 1])
-
-            with preset_col1:
-                preset_cutoff = st.selectbox(
-                    "Quick preset (select all through unit):",
-                    options=all_kanji_unit_labels,
-                    index=(
-                        all_kanji_unit_labels.index("ND2: 20")
-                        if "ND2: 20" in all_kanji_unit_labels
-                        else 0
-                    ),
-                    label_visibility="collapsed",
-                )
-
-            with preset_col2:
-                if st.button("Select up to unit", use_container_width=True):
-                    cutoff_idx = all_kanji_unit_labels.index(preset_cutoff)
-                    st.session_state.custom_kanji_units = (
-                        all_kanji_unit_labels[:cutoff_idx + 1]
-                    )
-                    st.rerun()
-
-            with preset_col3:
-                if st.button("Clear all", use_container_width=True):
-                    st.session_state.custom_kanji_units = []
-                    st.rerun()
-
-            selected_kanji_units = st.multiselect(
-                "Select kanji units to allow (kanji from chosen units will be kept; others become kana):",
-                options=all_kanji_unit_labels,
-                key="custom_kanji_units",
-            )
-
-            extra_kanji_raw = st.text_input(
-                "Optional extra allowed kanji (type characters directly):",
-                value="",
-                placeholder="e.g., 困思",
-            )
-
-            extra_kanji = {
-                ch for ch in extra_kanji_raw if is_kanji_char(ch)
-            }
-
-            custom_allowed_kanji = set().union(
-                *(KANJI_UNIT_SETS[u] for u in selected_kanji_units),
-                extra_kanji,
-            )
 
     available_sets = STUDY_CATEGORIES[category]
     study_all = st.checkbox("Study all units")
@@ -797,44 +748,37 @@ if st.session_state.stage == "setup":
             default=list(available_sets.keys())[:1]
         )
 
-    with st.expander("PLEASE READ"):
+    with st.expander("Btw"):
         st.write("- The correct answer will be shown after three incorrect guesses.")
         st.write("- Use the exact spelling/phrasing used in the book; capitalization doesn't matter, but if there is a ~, 〜, parentheses, or other grammar element, it should be included. SPACES MATTER. If two meanings are separated by a comma, both are correct; you do not need to enter both.")
-        st.write("- If it is a verb, include \"To\" before the verb. E.g., answer「食べる」with \"To eat.\"")
         st.write("- Do not include the (な) in な-adjectives.")
-        st.write("- Vocabulary kanji: 'Progress-based' uses each unit's allowed kanji; 'All Kanji' shows full kanji spellings; 'Custom' lets you pick any combination of kanji units (plus optional extra characters) while substituting unchosen kanji with kana.")
+        st.write("- Vocabulary kanji: 'Progress-based' keeps learned kanji and renders unlearned kanji as kana; 'All Kanji' shows full kanji spellings.")
         st.write("- Kanji Reading shows a kanji word and expects the full kana spelling, INCLUDING any hiragana/katakana in the word. E.g., answer「夏休み」 with 「なつやすみ」.")
-        st.write("- If you have any problems or ideas for things I could add, message me on LINE or something and I'll see what I can do. Currently working on adding JLPT kanji levels and maybe some kind of learning mode?")
+        st.write("- If you have any problems or ideas for things I could add, message me on LINE or something and I'll see what I can do.")
 
     if st.button("Start", type="primary", use_container_width=True):
         if not selected_sets:
             st.error("Invalid selection. Please select at least one unit.")
-
         elif category == "Kanji":
             combined_entries = {}
             focus_kanji = []
-
             for unit_name in selected_sets:
                 unit = available_sets[unit_name]
                 combined_entries.update(unit["entries"])
                 focus_kanji.extend(unit["kanji"])
 
             focus_kanji = list(dict.fromkeys(focus_kanji))
-
             if not focus_kanji:
                 st.error("The selected units don't have any focus kanji.")
-
             else:
                 matching_words = [
                     written for written in combined_entries
                     if any(kanji in written for kanji in focus_kanji)
                 ]
-
                 missing_readings = [
                     written for written in matching_words
                     if not combined_entries[written]["reading"]
                 ]
-
                 missing_meanings = [
                     written for written in matching_words
                     if not combined_entries[written]["meaning"].strip()
@@ -842,183 +786,86 @@ if st.session_state.stage == "setup":
 
                 if not matching_words:
                     st.error("No entries in the selected units contain their focus kanji.")
-
                 elif kanji_mode == "Reading" and missing_readings:
                     st.error(f"Add a reading for: {', '.join(missing_readings)}.")
-
                 elif kanji_mode == "Meaning" and missing_meanings:
                     st.error(f"Add a meaning for: {', '.join(missing_meanings)}.")
-
                 else:
-                    deck = build_kanji_deck(
-                        combined_entries,
-                        focus_kanji,
-                        kanji_mode
-                    )
+                    deck = build_kanji_deck(combined_entries, focus_kanji, kanji_mode)
                     start_quiz(deck, direction)
                     st.rerun()
-
         else:
             combined_entries = {}
             entry_keys = []
             combined_allowed_kanji = set()
-
             for unit_name in selected_sets:
                 unit = available_sets[unit_name]
                 combined_entries.update(unit["entries"])
                 entry_keys.extend(unit["vocab"])
-                combined_allowed_kanji.update(
-                    unit.get("allowed_kanji", set())
-                )
+                combined_allowed_kanji.update(unit.get("allowed_kanji", set()))
 
             entry_keys = list(dict.fromkeys(entry_keys))
-
             missing_entries = [
                 written for written in entry_keys
                 if written not in combined_entries
             ]
-
             if missing_entries:
-                st.error(
-                    f"Vocabulary lists refer to missing entries: "
-                    f"{', '.join(missing_entries)}."
-                )
-
+                st.error(f"Vocabulary lists refer to missing entries: {', '.join(missing_entries)}.")
             elif not entry_keys:
                 st.error("The selected units don't contain any vocabulary.")
-
             else:
-                active_allowed_kanji = (
-                    custom_allowed_kanji
-                    if vocab_kanji_mode == "Custom"
-                    else combined_allowed_kanji
-                )
-
                 deck = build_vocabulary_deck(
                     combined_entries,
                     entry_keys,
                     direction,
                     kanji_mode=vocab_kanji_mode,
-                    allowed_kanji=active_allowed_kanji,
+                    allowed_kanji=combined_allowed_kanji,
                 )
-
                 start_quiz(deck, direction)
                 st.rerun()
 
-
-# QUIZ SCREEN
 elif st.session_state.stage == "quiz":
-
     current = st.session_state.current
     correct_answers = st.session_state.deck[current]
-
-    words_done = (
-        st.session_state.total_count
-        - len(st.session_state.prompts)
-    )
-
-    is_jpn_to_eng = st.session_state.direction in (
-        "JPN to ENG",
-        "Kanji Meaning"
-    )
-
-    is_kanji_mode = st.session_state.direction in (
-        "Kanji Reading",
-        "Kanji Meaning"
-    )
+    words_done = st.session_state.total_count - len(st.session_state.prompts)
+    is_jpn_to_eng = st.session_state.direction in ("JPN to ENG", "Kanji Meaning")
+    is_kanji_mode = st.session_state.direction in ("Kanji Reading", "Kanji Meaning")
 
     st.progress(words_done / st.session_state.total_count)
+    st.caption(f"{words_done}/{st.session_state.total_count} | Attempt {st.session_state.attempts + 1}/3")
 
-    st.caption(
-        f"{words_done}/{st.session_state.total_count} | "
-        f"Attempt {st.session_state.attempts + 1}/3"
-    )
+    display_prompt = current if is_jpn_to_eng or is_kanji_mode else current.capitalize()
+    st.subheader(f"{st.session_state.direction}: {display_prompt}")
 
-    display_prompt = (
-        current
-        if is_jpn_to_eng or is_kanji_mode
-        else current.capitalize()
-    )
-
-    st.subheader(
-        f"{st.session_state.direction}: {display_prompt}"
-    )
-
-    # ANSWER INPUT
     if not st.session_state.waiting_next:
-
-        with st.form(
-            key=f"form_{words_done}_{st.session_state.attempts}",
-            clear_on_submit=True
-        ):
-
-            guess = st.text_input(
-                "Your answer:",
-                key=f"input_{words_done}_{st.session_state.attempts}"
-            ).strip()
-
+        with st.form(key=f"form_{words_done}_{st.session_state.attempts}", clear_on_submit=True):
+            guess = st.text_input("Your answer:", key=f"input_{words_done}_{st.session_state.attempts}").strip()
             col1, col2 = st.columns(2)
-
             with col1:
-                submitted = st.form_submit_button(
-                    "Submit",
-                    type="primary",
-                    use_container_width=True
-                )
-
+                submitted = st.form_submit_button("Submit", type="primary", use_container_width=True)
             with col2:
-                quit_early = st.form_submit_button(
-                    "End session",
-                    use_container_width=True
-                )
+                quit_early = st.form_submit_button("End session", use_container_width=True)
 
-        if quit_early or (
-            submitted and (guess.lower() == "done" or guess == "どね")
-        ):
+        if quit_early or (submitted and (guess.lower() == "done" or guess == "どね")):
             st.session_state.completed_all = False
             st.session_state.stage = "finished"
             st.rerun()
 
         if submitted and guess:
-
-            cleaned_guess = (
-                guess.lower()
-                if is_jpn_to_eng
-                else guess
-            )
-
-            normalized_answers = [
-                answer.lower() if is_jpn_to_eng else answer
-                for answer in correct_answers
-            ]
-
-            if cleaned_guess in normalized_answers:
-
-                st.session_state.feedback = (
-                    f"Correct. Answer was: {' / '.join(correct_answers)}"
-                )
-
+            cleaned_guess = guess.lower() if is_jpn_to_eng else guess
+            if cleaned_guess in correct_answers:
+                st.session_state.feedback = f"Correct. Answer was: {' / '.join(correct_answers)}"
                 st.session_state.feedback_type = "success"
                 st.session_state.waiting_next = True
                 st.rerun()
-
             else:
-
                 st.session_state.attempts += 1
-
                 if st.session_state.attempts >= 3:
-
-                    st.session_state.feedback = (
-                        f"Incorrect. Correct answer was: "
-                        f"{' / '.join(correct_answers)}"
-                    )
-
+                    st.session_state.feedback = f"Incorrect. Correct answer was: {' / '.join(correct_answers)}"
                     st.session_state.feedback_type = "error"
                     st.session_state.waiting_next = True
                     st.rerun()
-
                 else:
-
                     st.session_state.feedback = "Incorrect."
                     st.session_state.feedback_type = "warning"
                     st.rerun()
@@ -1026,84 +873,51 @@ elif st.session_state.stage == "quiz":
         if st.session_state.feedback_type == "warning":
             st.warning(st.session_state.feedback)
 
-
-    # NEXT CARD SCREEN
-    #note to self: next works inconsistently at best. no idea why, sometimes you must simply accept defeat.
     else:
-
         if st.session_state.feedback_type == "success":
             st.success(st.session_state.feedback)
-
         elif st.session_state.feedback_type == "error":
             st.error(st.session_state.feedback)
 
-        import streamlit.components.v1 as components
-
-        next_button_key = (
-            f"next_button_{words_done}_{st.session_state.attempts}"
-        )
-
-        st.button(
-            "Next",
-            key=next_button_key,
-            type="primary",
-            use_container_width=True,
-            on_click=next_word,
-        )
+        st.caption("Press Enter to continue, or click Next.")
+        if st.button("Next", type="primary", use_container_width=True):
+            next_word()
+            st.rerun()
 
         components.html(
             """
             <script>
-            const doc = window.parent.document;
+            const parentWindow = window.parent;
+            const parentDocument = parentWindow.document;
 
-            if (!doc._flashcardEnterHandler) {
+            if (!parentWindow.__flashcardEnterNextHandlerInstalled) {
+                parentDocument.addEventListener("keydown", (event) => {
+                    if (event.key !== "Enter" || event.repeat) return;
 
-                doc._flashcardEnterHandler = function(event) {
-
-                    if (event.key !== "Enter") return;
-
-                    const buttons = Array.from(
-                        doc.querySelectorAll('button')
-                    );
-
-                    const nextButton = buttons.find(button =>
-                        button.innerText.trim() === "Next"
-                    );
+                    const nextButton = Array.from(
+                        parentDocument.querySelectorAll("button")
+                    ).find((button) => button.innerText.trim() === "Next");
 
                     if (!nextButton) return;
 
                     event.preventDefault();
                     event.stopImmediatePropagation();
                     nextButton.click();
-                };
-
-                doc.addEventListener(
-                    "keydown",
-                    doc._flashcardEnterHandler,
-                    true
-                );
+                }, true);
+                parentWindow.__flashcardEnterNextHandlerInstalled = true;
             }
             </script>
             """,
-            height=0,
+            height=0
         )
 
-
-
-# FINISHED SCREEN
 elif st.session_state.stage == "finished":
-
     st.title("Session complete")
-
     if st.session_state.completed_all:
         st.success("All cards studied. Nice work!")
     else:
         st.info("Session ended early.")
 
-    if st.button(
-        "Study again",
-        type="primary",
-        use_container_width=True
-    ):
+    if st.button("Study again", type="primary", use_container_width=True):
         st.session_state.stage = "setup"
         st.rerun()
