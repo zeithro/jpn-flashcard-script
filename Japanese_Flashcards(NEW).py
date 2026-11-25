@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
 import random
 
 st.set_page_config(page_title="Flashcard Study App", layout="centered")
@@ -885,37 +884,11 @@ elif st.session_state.stage == "quiz":
         elif st.session_state.feedback_type == "error":
             st.error(st.session_state.feedback)
 
-        st.caption("Press Enter to continue, or click Next.")
-        if st.button("Next", type="primary", use_container_width=True):
-            next_word()
-            st.rerun()
-
-        components.html(
-            """
-            <script>
-            const parentWindow = window.parent;
-            const parentDocument = parentWindow.document;
-
-            if (!parentWindow.__flashcardEnterNextHandlerInstalled) {
-                parentDocument.addEventListener("keydown", (event) => {
-                    if (event.key !== "Enter" || event.repeat) return;
-
-                    const nextButton = Array.from(
-                        parentDocument.querySelectorAll("button")
-                    ).find((button) => button.innerText.trim() === "Next");
-
-                    if (!nextButton) return;
-
-                    event.preventDefault();
-                    event.stopImmediatePropagation();
-                    nextButton.click();
-                }, true);
-                parentWindow.__flashcardEnterNextHandlerInstalled = true;
-            }
-            </script>
-            """,
-            height=0
-        )
+        with st.form(key=f"next_form_{words_done}"):
+            st.caption("Press Enter to continue, or click Next.")
+            if st.form_submit_button("Next", type="primary", use_container_width=True):
+                next_word()
+                st.rerun()
 
 elif st.session_state.stage == "finished":
     st.title("Session complete")
