@@ -477,7 +477,374 @@ index = {
 
 jlpt_n5 = {
     "kanji_only": True,
-    "entries": {},
+    "entries": {
+        # 人
+        "人": {"reading": ["ひと; じん"], "meaning": "Person"},
+        "人生": {"reading": ["じんせい"], "meaning": "One's life"},
+        "大人": {"reading": ["おとな"], "meaning": "Adult"},
+        "人口": {"reading": ["じんこう"], "meaning": "Population"},
+        # 一
+        "一": {"reading": ["いち; ひと"], "meaning": "One"},
+        "一人": {"reading": ["ひとり"], "meaning": "One person; Alone"},
+        "一日": {"reading": ["ついたち; いちにち"], "meaning": "First day of the month; One day"},
+        "一番": {"reading": ["いちばん"], "meaning": "Number one; Best; Most"},
+        # 日
+        "日": {"reading": ["ひ; か"], "meaning": "Day; Sun"},
+        "日本": {"reading": ["にほん; にっぽん"], "meaning": "Japan"},
+        "日曜日": {"reading": ["にちようび"], "meaning": "Sunday"},
+        "毎日": {"reading": ["まいにち"], "meaning": "Every day"},
+        # 大
+        "大きい": {"reading": ["おおきい"], "meaning": "Big; Large"},
+        "大学": {"reading": ["だいがく"], "meaning": "University; College"},
+        "大切": {"reading": ["たいせつ"], "meaning": "Important; Precious"},
+        "大好き": {"reading": ["だいすき"], "meaning": "Love; Very fond of"},
+        # 年
+        "年": {"reading": ["とし; ねん"], "meaning": "Year"},
+        "今年": {"reading": ["ことし"], "meaning": "This year"},
+        "来年": {"reading": ["らいねん"], "meaning": "Next year"},
+        "去年": {"reading": ["きょねん"], "meaning": "Last year"},
+        # 出
+        "出る": {"reading": ["でる"], "meaning": "Go out; Leave; Appear"},
+        "出す": {"reading": ["だす"], "meaning": "Take out; Put out; Send"},
+        "出口": {"reading": ["でぐち"], "meaning": "Exit"},
+        "外出": {"reading": ["がいしゅつ"], "meaning": "Going out"},
+        # 本
+        "本": {"reading": ["ほん"], "meaning": "Book; Origin"},
+        "日本語": {"reading": ["にほんご"], "meaning": "Japanese language"},
+        "本当": {"reading": ["ほんとう"], "meaning": "Truth; Reality"},
+        "一本": {"reading": ["いっぽん"], "meaning": "One long object; One bottle"},
+        # 中
+        "中": {"reading": ["なか; ちゅう"], "meaning": "Inside; Middle"},
+        "中学校": {"reading": ["ちゅうがっこう"], "meaning": "Middle school; Junior high school"},
+        "一日中": {"reading": ["いちにちじゅう"], "meaning": "All day long"},
+        "水中": {"reading": ["すいちゅう"], "meaning": "Underwater"},
+        # 子
+        "子": {"reading": ["こ"], "meaning": "Child"},
+        "子供": {"reading": ["こども"], "meaning": "Child; Children"},
+        "女の子": {"reading": ["おんなのこ"], "meaning": "Girl"},
+        "男の子": {"reading": ["おとこのこ"], "meaning": "Boy"},
+        # 見
+        "見る": {"reading": ["みる"], "meaning": "See; Look; Watch"},
+        "見せる": {"reading": ["みせる"], "meaning": "Show"},
+        "見える": {"reading": ["みえる"], "meaning": "Be visible; Can see"},
+        "見物": {"reading": ["けんぶつ"], "meaning": "Sightseeing; Watching"},
+        # 国
+        "国": {"reading": ["くに"], "meaning": "Country"},
+        "外国": {"reading": ["がいこく"], "meaning": "Foreign country"},
+        "外国人": {"reading": ["がいこくじん"], "meaning": "Foreigner"},
+        "天国": {"reading": ["てんごく"], "meaning": "Heaven"},
+        # 上
+        "上": {"reading": ["うえ; じょう"], "meaning": "Above; Up; Top"},
+        "上がる": {"reading": ["あがる"], "meaning": "Rise; Go up"},
+        "上げる": {"reading": ["あげる"], "meaning": "Raise; Give"},
+        "上手": {"reading": ["じょうず"], "meaning": "Skillful; Good at"},
+        # 分
+        "分かる": {"reading": ["わかる"], "meaning": "Understand"},
+        "十分": {"reading": ["じゅうぶん; じっぷん"], "meaning": "Enough; Ten minutes"},
+        "半分": {"reading": ["はんぶん"], "meaning": "Half"},
+        "自分": {"reading": ["じぶん"], "meaning": "Oneself"},
+        # 生
+        "生きる": {"reading": ["いきる"], "meaning": "Live"},
+        "生まれる": {"reading": ["うまれる"], "meaning": "Be born"},
+        "先生": {"reading": ["せんせい"], "meaning": "Teacher"},
+        "学生": {"reading": ["がくせい"], "meaning": "Student"},
+        # 行
+        "行く": {"reading": ["いく"], "meaning": "Go"},
+        "行う": {"reading": ["おこなう"], "meaning": "Carry out; Conduct; Perform"},
+        "銀行": {"reading": ["ぎんこう"], "meaning": "Bank"},
+        "旅行": {"reading": ["りょこう"], "meaning": "Travel; Trip"},
+        # 二
+        "二": {"reading": ["に; ふた"], "meaning": "Two"},
+        "二人": {"reading": ["ふたり"], "meaning": "Two people"},
+        "二日": {"reading": ["ふつか"], "meaning": "Second day of the month; Two days"},
+        "二十歳": {"reading": ["はたち"], "meaning": "Twenty years old"},
+        # 間
+        "間": {"reading": ["あいだ; かん"], "meaning": "Interval; Between; While"},
+        "時間": {"reading": ["じかん"], "meaning": "Time; Hour"},
+        "人間": {"reading": ["にんげん"], "meaning": "Human beings; People; Humans"},
+        "年間": {"reading": ["ねんかん"], "meaning": "Per year; Annual; A year; (Duration of) a year; (For) a year"},
+        # 時
+        "時": {"reading": ["とき; じ"], "meaning": "Time; Hour"},
+        "時計": {"reading": ["とけい"], "meaning": "Clock; Watch"},
+        "時々": {"reading": ["ときどき"], "meaning": "Sometimes"},
+        "一時": {"reading": ["いちじ"], "meaning": "One o'clock; For a while"},
+        # 気
+        "気": {"reading": ["き"], "meaning": "Spirit; Mind; Mood"},
+        "天気": {"reading": ["てんき"], "meaning": "Weather"},
+        "元気": {"reading": ["げんき"], "meaning": "Healthy; Energetic"},
+        "人気": {"reading": ["にんき"], "meaning": "Popularity"},
+        # 十
+        "十": {"reading": ["じゅう; とお"], "meaning": "Ten"},
+        "十日": {"reading": ["とおか"], "meaning": "Tenth day of the month; Ten days"},
+        "二十": {"reading": ["にじゅう"], "meaning": "Twenty"},
+        # 女
+        "女": {"reading": ["おんな"], "meaning": "Woman; Female"},
+        "女性": {"reading": ["じょせい"], "meaning": "Woman; Female"},
+        "彼女": {"reading": ["かのじょ"], "meaning": "She; Girlfriend"},
+        "女の人": {"reading": ["おんなのひと"], "meaning": "Woman"},
+        # 三
+        "三": {"reading": ["さん; み"], "meaning": "Three"},
+        "三人": {"reading": ["さんにん"], "meaning": "Three people"},
+        "三日": {"reading": ["みっか"], "meaning": "Third day of the month; Three days"},
+        "三月": {"reading": ["さんがつ"], "meaning": "March"},
+        # 前
+        "前": {"reading": ["まえ"], "meaning": "Front; Before"},
+        "名前": {"reading": ["なまえ"], "meaning": "Name"},
+        "午前": {"reading": ["ごぜん"], "meaning": "Morning; A.M."},
+        "前回": {"reading": ["ぜんかい"], "meaning": "Last time"},
+        # 入
+        "入る": {"reading": ["はいる; いる"], "meaning": "Enter; Go in"},
+        "入れる": {"reading": ["いれる"], "meaning": "Put in; Insert"},
+        "入口": {"reading": ["いりぐち"], "meaning": "Entrance"},
+        "入学": {"reading": ["にゅうがく"], "meaning": "School admission; Enrollment"},
+        # 小
+        "小さい": {"reading": ["ちいさい"], "meaning": "Small; Little"},
+        "小学校": {"reading": ["しょうがっこう"], "meaning": "Elementary school"},
+        "小川": {"reading": ["おがわ"], "meaning": "Stream; Brook"},
+        # 後
+        "後": {"reading": ["あと; うしろ; ご"], "meaning": "After; Behind; Later"},
+        "後ろ": {"reading": ["うしろ"], "meaning": "Back; Behind"},
+        "午後": {"reading": ["ごご"], "meaning": "Afternoon; P.M."},
+        "最後": {"reading": ["さいご"], "meaning": "Last; End"},
+        # 長
+        "長い": {"reading": ["ながい"], "meaning": "Long"},
+        "校長": {"reading": ["こうちょう"], "meaning": "Principal"},
+        "長男": {"reading": ["ちょうなん"], "meaning": "Eldest son"},
+        "長女": {"reading": ["ちょうじょ"], "meaning": "Eldest daughter"},
+        # 下
+        "下": {"reading": ["した; もと; か"], "meaning": "Below; Down; Under"},
+        "下がる": {"reading": ["さがる"], "meaning": "Go down; Drop"},
+        "下げる": {"reading": ["さげる"], "meaning": "Lower; Hang down"},
+        "地下鉄": {"reading": ["ちかてつ"], "meaning": "Subway"},
+        # 学
+        "学ぶ": {"reading": ["まなぶ"], "meaning": "Learn; Study"},
+        "学校": {"reading": ["がっこう"], "meaning": "School"},
+        "文学": {"reading": ["ぶんがく"], "meaning": "Literature"},
+        # 月
+        "月": {"reading": ["つき; がつ"], "meaning": "Moon; Month"},
+        "月曜日": {"reading": ["げつようび"], "meaning": "Monday"},
+        "今月": {"reading": ["こんげつ"], "meaning": "This month"},
+        "来月": {"reading": ["らいげつ"], "meaning": "Next month"},
+        # 何
+        "何": {"reading": ["なに; なん"], "meaning": "What"},
+        "何時": {"reading": ["なんじ"], "meaning": "What time"},
+        "何人": {"reading": ["なんにん; なんじん"], "meaning": "How many people; What nationality"},
+        "何か": {"reading": ["なにか"], "meaning": "Something"},
+        # 来
+        "来る": {"reading": ["くる"], "meaning": "Come"},
+        "来年": {"reading": ["らいねん"], "meaning": "Next year"},
+        "未来": {"reading": ["みらい"], "meaning": "Future"},
+        # 話
+        "話す": {"reading": ["はなす"], "meaning": "Speak; Talk"},
+        "話": {"reading": ["はなし"], "meaning": "Talk; Story"},
+        "電話": {"reading": ["でんわ"], "meaning": "Telephone"},
+        "会話": {"reading": ["かいわ"], "meaning": "Conversation"},
+        # 山
+        "山": {"reading": ["やま"], "meaning": "Mountain"},
+        "富士山": {"reading": ["ふじさん"], "meaning": "Mt. Fuji"},
+        "火山": {"reading": ["かざん"], "meaning": "Volcano"},
+        "登山": {"reading": ["とざん"], "meaning": "Mountain climbing"},
+        # 高
+        "高い": {"reading": ["たかい"], "meaning": "High; Expensive"},
+        "高校": {"reading": ["こうこう"], "meaning": "High school"},
+        "高校生": {"reading": ["こうこうせい"], "meaning": "High school student"},
+        # 今
+        "今": {"reading": ["いま"], "meaning": "Now"},
+        "今日": {"reading": ["きょう"], "meaning": "Today"},
+        "今年": {"reading": ["ことし"], "meaning": "This year"},
+        # 書
+        "書く": {"reading": ["かく"], "meaning": "Write"},
+        "辞書": {"reading": ["じしょ"], "meaning": "Dictionary"},
+        "教科書": {"reading": ["きょうかしょ"], "meaning": "Textbook"},
+        "図書館": {"reading": ["としょかん"], "meaning": "Library"},
+        # 五
+        "五": {"reading": ["ご; いつ"], "meaning": "Five"},
+        "五日": {"reading": ["いつか"], "meaning": "Fifth day of the month; Five days"},
+        "五月": {"reading": ["ごがつ"], "meaning": "May"},
+        "五人": {"reading": ["ごにん"], "meaning": "Five people"},
+        # 名
+        "有名": {"reading": ["ゆうめい"], "meaning": "Famous"},
+        "名字": {"reading": ["みょうじ"], "meaning": "Surname; Family name"},
+        # 金
+        "お金": {"reading": ["おかね"], "meaning": "Money"},
+        "金曜日": {"reading": ["きんようび"], "meaning": "Friday"},
+        "金": {"reading": ["きん"], "meaning": "Gold; Money"},
+        "料金": {"reading": ["りょうきん"], "meaning": "Fee; Charge"},
+        # 男
+        "男": {"reading": ["おとこ"], "meaning": "Man; Male"},
+        "男性": {"reading": ["だんせい"], "meaning": "Man; Male"},
+        "男の人": {"reading": ["おとこのひと"], "meaning": "Man"},
+        # 外
+        "外": {"reading": ["そと; がい"], "meaning": "Outside"},
+        "外国人": {"reading": ["がいこくじん"], "meaning": "Foreigner"},
+        "以外": {"reading": ["いがい"], "meaning": "Except; Other than"},
+        # 四
+        "四": {"reading": ["よん; し; よ"], "meaning": "Four"},
+        "四日": {"reading": ["よっか"], "meaning": "Fourth day of the month; Four days"},
+        "四月": {"reading": ["しがつ"], "meaning": "April"},
+        "四人": {"reading": ["よにん"], "meaning": "Four people"},
+        # 先
+        "先": {"reading": ["さき"], "meaning": "Ahead; First; Previous"},
+        "先週": {"reading": ["せんしゅう"], "meaning": "Last week"},
+        "先月": {"reading": ["せんげつ"], "meaning": "Last month"},
+        # 川
+        "川": {"reading": ["かわ"], "meaning": "River"},
+        "川上": {"reading": ["かわかみ"], "meaning": "Upstream"},
+        "天の川": {"reading": ["あまのかわ"], "meaning": "Milky Way"},
+        # 東
+        "東": {"reading": ["ひがし"], "meaning": "East"},
+        "東京": {"reading": ["とうきょう"], "meaning": "Tokyo"},
+        "東口": {"reading": ["ひがしぐち"], "meaning": "East exit"},
+        "東方": {"reading": ["とうほう"], "meaning": "East; Orient"},
+        # 聞
+        "聞く": {"reading": ["きく"], "meaning": "Listen; Hear; Ask"},
+        "聞こえる": {"reading": ["きこえる"], "meaning": "Be audible; Can hear"},
+        "新聞": {"reading": ["しんぶん"], "meaning": "Newspaper"},
+        "見聞": {"reading": ["けんぶん"], "meaning": "Information; Experience"},
+        # 語
+        "英語": {"reading": ["えいご"], "meaning": "English language"},
+        "言語": {"reading": ["げんご"], "meaning": "Language"},
+        "単語": {"reading": ["たんご"], "meaning": "Word; Vocabulary"},
+        # 九
+        "九": {"reading": ["きゅう; く; ここの"], "meaning": "Nine"},
+        "九日": {"reading": ["ここのか"], "meaning": "Ninth day of the month; Nine days"},
+        "九月": {"reading": ["くがつ"], "meaning": "September"},
+        "九人": {"reading": ["きゅうにん"], "meaning": "Nine people"},
+        # 食
+        "食べる": {"reading": ["たべる"], "meaning": "Eat"},
+        "食べ物": {"reading": ["たべもの"], "meaning": "Food"},
+        "食堂": {"reading": ["しょくどう"], "meaning": "Dining hall; Cafeteria"},
+        "食事": {"reading": ["しょくじ"], "meaning": "Meal"},
+        # 八
+        "八": {"reading": ["はち; や"], "meaning": "Eight"},
+        "八日": {"reading": ["ようか"], "meaning": "Eighth day of the month; Eight days"},
+        "八月": {"reading": ["はちがつ"], "meaning": "August"},
+        "八人": {"reading": ["はちにん"], "meaning": "Eight people"},
+        # 水
+        "水": {"reading": ["みず"], "meaning": "Water"},
+        "水曜日": {"reading": ["すいようび"], "meaning": "Wednesday"},
+        "水道": {"reading": ["すいどう"], "meaning": "Water supply; Tap water"},
+        "水泳": {"reading": ["すいえい"], "meaning": "Swimming"},
+        # 天
+        "天気": {"reading": ["てんき"], "meaning": "Weather"},
+        "天ぷら": {"reading": ["てんぷら"], "meaning": "Tempura"},
+        "天国": {"reading": ["てんごく"], "meaning": "Heaven; Paradise"},
+        "天才": {"reading": ["てんさい"], "meaning": "Genius; Talent"},
+        # 木
+        "木": {"reading": ["き"], "meaning": "Tree; Wood"},
+        "木曜日": {"reading": ["もくようび"], "meaning": "Thursday"},
+        "木工": {"reading": ["もっこう"], "meaning": "Woodworking; Carpentry"},
+        "大木": {"reading": ["たいぼく"], "meaning": "Large tree"},
+        # 六
+        "六": {"reading": ["ろく; む"], "meaning": "Six"},
+        "六日": {"reading": ["むいか"], "meaning": "Sixth day of the month; Six days"},
+        "六月": {"reading": ["ろくがつ"], "meaning": "June"},
+        "六人": {"reading": ["ろくにん"], "meaning": "Six people"},
+        # 万
+        "一万": {"reading": ["いちまん"], "meaning": "Ten thousand"},
+        "万円": {"reading": ["まんえん"], "meaning": "Ten thousand yen"},
+        "百万": {"reading": ["ひゃくまん"], "meaning": "One million"},
+        # 白
+        "白い": {"reading": ["しろい"], "meaning": "White"},
+        "白": {"reading": ["しろ"], "meaning": "White"},
+        "白黒": {"reading": ["しろくろ"], "meaning": "Black and white"},
+        "白紙": {"reading": ["はくし"], "meaning": "Blank paper"},
+        # 七
+        "七": {"reading": ["なな; しち"], "meaning": "Seven"},
+        "七日": {"reading": ["なのか"], "meaning": "Seventh day of the month; Seven days"},
+        "七月": {"reading": ["しちがつ"], "meaning": "July"},
+        "七人": {"reading": ["しちにん"], "meaning": "Seven people"},
+        # 円
+        "円": {"reading": ["えん"], "meaning": "Yen; Circle"},
+        "百円": {"reading": ["ひゃくえん"], "meaning": "One hundred yen"},
+        "千円": {"reading": ["せんえん"], "meaning": "One thousand yen"},
+        # 電
+        "電車": {"reading": ["でんしゃ"], "meaning": "Train"},
+        "電気": {"reading": ["でんき"], "meaning": "Electricity; Electric light"},
+        "電話": {"reading": ["でんわ"], "meaning": "Telephone"},
+        # 父
+        "父": {"reading": ["ちち"], "meaning": "Father"},
+        "お父さん": {"reading": ["おとうさん"], "meaning": "Father; Dad"},
+        "父母": {"reading": ["ふぼ"], "meaning": "Parents"},
+        # 北
+        "北": {"reading": ["きた"], "meaning": "North"},
+        "北海道": {"reading": ["ほっかいどう"], "meaning": "Hokkaido"},
+        "北口": {"reading": ["きたぐち"], "meaning": "North exit"},
+        "北米": {"reading": ["ほくべい"], "meaning": "North America"},
+        # 車
+        "車": {"reading": ["くるま"], "meaning": "Car; Vehicle"},
+        "自転車": {"reading": ["じてんしゃ"], "meaning": "Bicycle"},
+        "自動車": {"reading": ["じどうしゃ"], "meaning": "Automobile; Car"},
+        # 母
+        "母": {"reading": ["はは"], "meaning": "Mother"},
+        "お母さん": {"reading": ["おかあさん"], "meaning": "Mother; Mom"},
+        "母国": {"reading": ["ぼこく"], "meaning": "Home country; Mother country"},
+        # 半
+        "半日": {"reading": ["はんにち"], "meaning": "Half a day"},
+        "後半": {"reading": ["こうはん"], "meaning": "Second half"},
+        "前半": {"reading": ["ぜんはん"], "meaning": "First half"},
+        # 百
+        "百": {"reading": ["ひゃく"], "meaning": "Hundred"},
+        "百貨店": {"reading": ["ひゃっかてん"], "meaning": "Department store"},
+        "八百屋": {"reading": ["やおや"], "meaning": "Greengrocer; Vegetable shop"},
+        # 土
+        "土": {"reading": ["つち; ど"], "meaning": "Soil; Earth"},
+        "土曜日": {"reading": ["どようび"], "meaning": "Saturday"},
+        "土地": {"reading": ["とち"], "meaning": "Land; Plot"},
+        "お土産": {"reading": ["みやげ"], "meaning": "Souvenir"},
+        # 西
+        "西": {"reading": ["にし"], "meaning": "West"},
+        "西口": {"reading": ["にしぐち"], "meaning": "West exit"},
+        "関西": {"reading": ["かんさい"], "meaning": "Kansai region"},
+        "東西": {"reading": ["とうざい"], "meaning": "East and west"},
+        # 読
+        "読む": {"reading": ["よむ"], "meaning": "Read"},
+        "読み方": {"reading": ["よみかた"], "meaning": "How to read; Reading"},
+        "音読み": {"reading": ["おんよみ"], "meaning": "On'yomi; Chinese reading; Onyomi"},
+        # 千
+        "千": {"reading": ["せん"], "meaning": "Thousand"},
+        "千葉": {"reading": ["ちば"], "meaning": "Chiba"},
+        "一千年": {"reading": ["いっせんねん"], "meaning": "One thousand years"},
+        # 校 most use cases already covered
+        # 右
+        "右": {"reading": ["みぎ"], "meaning": "Right"},
+        "右側": {"reading": ["みぎがわ"], "meaning": "Right side"},
+        "右手": {"reading": ["みぎて"], "meaning": "Right hand"},
+        # 南
+        "南": {"reading": ["みなみ"], "meaning": "South"},
+        "南口": {"reading": ["みなみぐち"], "meaning": "South exit"},
+        "南米": {"reading": ["なんべい"], "meaning": "South America"},
+        "東南": {"reading": ["とうなん"], "meaning": "Southeast"},
+        # 左
+        "左": {"reading": ["ひだり"], "meaning": "Left"},
+        "左側": {"reading": ["ひだりがわ"], "meaning": "Left side"},
+        "左手": {"reading": ["ひだりて"], "meaning": "Left hand"},
+        # 友
+        "友達": {"reading": ["ともだち"], "meaning": "Friend"},
+        "友人": {"reading": ["ゆうじん"], "meaning": "Friend"},
+        "親友": {"reading": ["しんゆう"], "meaning": "Close friend; Best friend"},
+        "友好": {"reading": ["ゆうこう"], "meaning": "Friendship"},
+        # 火
+        "火": {"reading": ["ひ"], "meaning": "Fire; Flame"},
+        "火曜日": {"reading": ["かようび"], "meaning": "Tuesday"},
+        "花火": {"reading": ["はなび"], "meaning": "Fireworks"},
+        # 毎
+        "毎週": {"reading": ["まいしゅう"], "meaning": "Every week"},
+        "毎月": {"reading": ["まいつき; まいげつ"], "meaning": "Every month"},
+        "毎年": {"reading": ["まいとし; まいねん"], "meaning": "Every year"},
+        # 雨
+        "雨": {"reading": ["あめ"], "meaning": "Rain"},
+        "大雨": {"reading": ["おおあめ"], "meaning": "Heavy rain"},
+        "小雨": {"reading": ["こさめ"], "meaning": "Light rain; Drizzle"},
+        # 休
+        "休む": {"reading": ["やすむ"], "meaning": "Rest; Take a day off; Be absent"},
+        "休み": {"reading": ["やすみ"], "meaning": "Rest; Holiday; Vacation"},
+        "夏休み": {"reading": ["なつやすみ"], "meaning": "Summer vacation"},
+        "冬休み": {"reading": ["ふゆやすみ"], "meaning": "Winter vacation"},
+        # 午
+        "正午": {"reading": ["しょうご"], "meaning": "Noon; Midday"},
+        "少年": {"reading": ["しょうねん"], "meaning": "Young man; Boy"},
+    },
     "vocab": [],
     "kanji": [
         "人", "一", "日", "大", "年", "出", "本", "中", "子", "見",
