@@ -665,6 +665,7 @@ def next_word():
     else:
         st.session_state.stage = "finished"
 
+
 # SETUP SCREEN
 if st.session_state.stage == "setup":
     st.title("Flashcard Study App")
@@ -699,22 +700,35 @@ if st.session_state.stage == "setup":
 
         if vocab_kanji_mode == "Custom":
             all_kanji_unit_labels = list(KANJI_UNIT_SETS.keys())
+
             if "custom_kanji_units" not in st.session_state:
-                st.session_state.custom_kanji_units = ["ND2: はじめに", "ND2: 13"]
+                st.session_state.custom_kanji_units = [
+                    "ND2: はじめに",
+                    "ND2: 13"
+                ]
 
             preset_col1, preset_col2, preset_col3 = st.columns([2, 1, 1])
+
             with preset_col1:
                 preset_cutoff = st.selectbox(
                     "Quick preset (select all through unit):",
                     options=all_kanji_unit_labels,
-                    index=all_kanji_unit_labels.index("ND2: 20") if "ND2: 20" in all_kanji_unit_labels else 0,
+                    index=(
+                        all_kanji_unit_labels.index("ND2: 20")
+                        if "ND2: 20" in all_kanji_unit_labels
+                        else 0
+                    ),
                     label_visibility="collapsed",
                 )
+
             with preset_col2:
                 if st.button("Select up to unit", use_container_width=True):
                     cutoff_idx = all_kanji_unit_labels.index(preset_cutoff)
-                    st.session_state.custom_kanji_units = all_kanji_unit_labels[: cutoff_idx + 1]
+                    st.session_state.custom_kanji_units = (
+                        all_kanji_unit_labels[:cutoff_idx + 1]
+                    )
                     st.rerun()
+
             with preset_col3:
                 if st.button("Clear all", use_container_width=True):
                     st.session_state.custom_kanji_units = []
@@ -725,12 +739,17 @@ if st.session_state.stage == "setup":
                 options=all_kanji_unit_labels,
                 key="custom_kanji_units",
             )
+
             extra_kanji_raw = st.text_input(
                 "Optional extra allowed kanji (type characters directly):",
                 value="",
                 placeholder="e.g., 困思",
             )
-            extra_kanji = {ch for ch in extra_kanji_raw if is_kanji_char(ch)}
+
+            extra_kanji = {
+                ch for ch in extra_kanji_raw if is_kanji_char(ch)
+            }
+
             custom_allowed_kanji = set().union(
                 *(KANJI_UNIT_SETS[u] for u in selected_kanji_units),
                 extra_kanji,
@@ -759,26 +778,32 @@ if st.session_state.stage == "setup":
     if st.button("Start", type="primary", use_container_width=True):
         if not selected_sets:
             st.error("Invalid selection. Please select at least one unit.")
+
         elif category == "Kanji":
             combined_entries = {}
             focus_kanji = []
+
             for unit_name in selected_sets:
                 unit = available_sets[unit_name]
                 combined_entries.update(unit["entries"])
                 focus_kanji.extend(unit["kanji"])
 
             focus_kanji = list(dict.fromkeys(focus_kanji))
+
             if not focus_kanji:
                 st.error("The selected units don't have any focus kanji.")
+
             else:
                 matching_words = [
                     written for written in combined_entries
                     if any(kanji in written for kanji in focus_kanji)
                 ]
+
                 missing_readings = [
                     written for written in matching_words
                     if not combined_entries[written]["reading"]
                 ]
+
                 missing_meanings = [
                     written for written in matching_words
                     if not combined_entries[written]["meaning"].strip()
@@ -786,39 +811,58 @@ if st.session_state.stage == "setup":
 
                 if not matching_words:
                     st.error("No entries in the selected units contain their focus kanji.")
+
                 elif kanji_mode == "Reading" and missing_readings:
                     st.error(f"Add a reading for: {', '.join(missing_readings)}.")
+
                 elif kanji_mode == "Meaning" and missing_meanings:
                     st.error(f"Add a meaning for: {', '.join(missing_meanings)}.")
+
                 else:
-                    deck = build_kanji_deck(combined_entries, focus_kanji, kanji_mode)
+                    deck = build_kanji_deck(
+                        combined_entries,
+                        focus_kanji,
+                        kanji_mode
+                    )
                     start_quiz(deck, direction)
                     st.rerun()
+
         else:
             combined_entries = {}
             entry_keys = []
             combined_allowed_kanji = set()
+
             for unit_name in selected_sets:
                 unit = available_sets[unit_name]
                 combined_entries.update(unit["entries"])
                 entry_keys.extend(unit["vocab"])
-                combined_allowed_kanji.update(unit.get("allowed_kanji", set()))
+                combined_allowed_kanji.update(
+                    unit.get("allowed_kanji", set())
+                )
 
             entry_keys = list(dict.fromkeys(entry_keys))
+
             missing_entries = [
                 written for written in entry_keys
                 if written not in combined_entries
             ]
+
             if missing_entries:
-                st.error(f"Vocabulary lists refer to missing entries: {', '.join(missing_entries)}.")
+                st.error(
+                    f"Vocabulary lists refer to missing entries: "
+                    f"{', '.join(missing_entries)}."
+                )
+
             elif not entry_keys:
                 st.error("The selected units don't contain any vocabulary.")
+
             else:
                 active_allowed_kanji = (
                     custom_allowed_kanji
                     if vocab_kanji_mode == "Custom"
                     else combined_allowed_kanji
                 )
+
                 deck = build_vocabulary_deck(
                     combined_entries,
                     entry_keys,
@@ -826,51 +870,124 @@ if st.session_state.stage == "setup":
                     kanji_mode=vocab_kanji_mode,
                     allowed_kanji=active_allowed_kanji,
                 )
+
                 start_quiz(deck, direction)
                 st.rerun()
 
+
+# QUIZ SCREEN
 elif st.session_state.stage == "quiz":
+
     current = st.session_state.current
     correct_answers = st.session_state.deck[current]
-    words_done = st.session_state.total_count - len(st.session_state.prompts)
-    is_jpn_to_eng = st.session_state.direction in ("JPN to ENG", "Kanji Meaning")
-    is_kanji_mode = st.session_state.direction in ("Kanji Reading", "Kanji Meaning")
+
+    words_done = (
+        st.session_state.total_count
+        - len(st.session_state.prompts)
+    )
+
+    is_jpn_to_eng = st.session_state.direction in (
+        "JPN to ENG",
+        "Kanji Meaning"
+    )
+
+    is_kanji_mode = st.session_state.direction in (
+        "Kanji Reading",
+        "Kanji Meaning"
+    )
 
     st.progress(words_done / st.session_state.total_count)
-    st.caption(f"{words_done}/{st.session_state.total_count} | Attempt {st.session_state.attempts + 1}/3")
 
-    display_prompt = current if is_jpn_to_eng or is_kanji_mode else current.capitalize()
-    st.subheader(f"{st.session_state.direction}: {display_prompt}")
+    st.caption(
+        f"{words_done}/{st.session_state.total_count} | "
+        f"Attempt {st.session_state.attempts + 1}/3"
+    )
 
+    display_prompt = (
+        current
+        if is_jpn_to_eng or is_kanji_mode
+        else current.capitalize()
+    )
+
+    st.subheader(
+        f"{st.session_state.direction}: {display_prompt}"
+    )
+
+    # ANSWER INPUT
     if not st.session_state.waiting_next:
-        with st.form(key=f"form_{words_done}_{st.session_state.attempts}", clear_on_submit=True):
-            guess = st.text_input("Your answer:", key=f"input_{words_done}_{st.session_state.attempts}").strip()
-            col1, col2 = st.columns(2)
-            with col1:
-                submitted = st.form_submit_button("Submit", type="primary", use_container_width=True)
-            with col2:
-                quit_early = st.form_submit_button("End session", use_container_width=True)
 
-        if quit_early or (submitted and (guess.lower() == "done" or guess == "どね")):
+        with st.form(
+            key=f"form_{words_done}_{st.session_state.attempts}",
+            clear_on_submit=True
+        ):
+
+            guess = st.text_input(
+                "Your answer:",
+                key=f"input_{words_done}_{st.session_state.attempts}"
+            ).strip()
+
+            col1, col2 = st.columns(2)
+
+            with col1:
+                submitted = st.form_submit_button(
+                    "Submit",
+                    type="primary",
+                    use_container_width=True
+                )
+
+            with col2:
+                quit_early = st.form_submit_button(
+                    "End session",
+                    use_container_width=True
+                )
+
+        if quit_early or (
+            submitted and (guess.lower() == "done" or guess == "どね")
+        ):
             st.session_state.completed_all = False
             st.session_state.stage = "finished"
             st.rerun()
 
         if submitted and guess:
-            cleaned_guess = guess.lower() if is_jpn_to_eng else guess
-            if cleaned_guess in correct_answers:
-                st.session_state.feedback = f"Correct. Answer was: {' / '.join(correct_answers)}"
+
+            cleaned_guess = (
+                guess.lower()
+                if is_jpn_to_eng
+                else guess
+            )
+
+            normalized_answers = [
+                answer.lower() if is_jpn_to_eng else answer
+                for answer in correct_answers
+            ]
+
+            if cleaned_guess in normalized_answers:
+
+                st.session_state.feedback = (
+                    f"Correct. Answer was: {' / '.join(correct_answers)}"
+                )
+
                 st.session_state.feedback_type = "success"
                 st.session_state.waiting_next = True
                 st.rerun()
+
             else:
+
                 st.session_state.attempts += 1
+
                 if st.session_state.attempts >= 3:
-                    st.session_state.feedback = f"Incorrect. Correct answer was: {' / '.join(correct_answers)}"
+
+                    st.session_state.feedback = (
+                        f"Incorrect. Correct answer was: "
+                        f"{' / '.join(correct_answers)}"
+                    )
+
                     st.session_state.feedback_type = "error"
                     st.session_state.waiting_next = True
                     st.rerun()
+
                 else:
+
                     st.session_state.feedback = "Incorrect."
                     st.session_state.feedback_type = "warning"
                     st.rerun()
@@ -878,77 +995,48 @@ elif st.session_state.stage == "quiz":
         if st.session_state.feedback_type == "warning":
             st.warning(st.session_state.feedback)
 
+    # NEXT CARD SCREEN
     else:
+
         if st.session_state.feedback_type == "success":
             st.success(st.session_state.feedback)
+
         elif st.session_state.feedback_type == "error":
             st.error(st.session_state.feedback)
 
-        with st.form(key=f"next_form_{words_done}_{st.session_state.attempts}"):
+        # Enter and clicking Next both advance the card.
+        # No JavaScript or iframe required.
+        with st.form(
+            key=f"next_form_{words_done}_{st.session_state.attempts}"
+        ):
+
             st.caption("Press Enter to continue, or click Next.")
-            if st.form_submit_button("Next", type="primary", use_container_width=True):
-                next_word()
-                st.rerun()
 
-        components.html(
-            f"""
-            <script>
-            (function() {{
-                const parentDoc = window.parent.document;
-                function focusNextButton() {{
-                    const buttons = Array.from(parentDoc.querySelectorAll('button[kind="primaryFormSubmit"], button'));
-                    const nextBtn = buttons.find((b) => b.innerText && b.innerText.trim() === "Next");
-                    if (nextBtn) {{
-                        nextBtn.focus();
-                        return true;
-                    }}
-                    return false;
-                }}
-                setTimeout(focusNextButton, 50);
-                setTimeout(focusNextButton, 200);
-            }})();
-            </script>
-            """,
-            height=0,
-        )
-        st.iframe(
-            """
-            <script>
-            (function() {
-                const parentDoc = window.parent.document;
+            next_submitted = st.form_submit_button(
+                "Next",
+                type="primary",
+                use_container_width=True
+            )
 
-                function focusNextButton() {
-                    const buttons = Array.from(
-                        parentDoc.querySelectorAll('button[kind="primaryFormSubmit"], button')
-                    );
+        if next_submitted:
+            next_word()
+            st.rerun()
 
-                    const nextBtn = buttons.find(
-                        (b) => b.innerText && b.innerText.trim() === "Next"
-                    );
 
-                    if (nextBtn) {
-                        nextBtn.focus();
-                        return true;
-                    }
-
-            return false;
-                }
-
-        setTimeout(focusNextButton, 50);
-        setTimeout(focusNextButton, 200);
-    })();
-    </script>
-    """,
-    height=0,
-)
-
+# FINISHED SCREEN
 elif st.session_state.stage == "finished":
+
     st.title("Session complete")
+
     if st.session_state.completed_all:
         st.success("All cards studied. Nice work!")
     else:
         st.info("Session ended early.")
 
-    if st.button("Study again", type="primary", use_container_width=True):
+    if st.button(
+        "Study again",
+        type="primary",
+        use_container_width=True
+    ):
         st.session_state.stage = "setup"
         st.rerun()
