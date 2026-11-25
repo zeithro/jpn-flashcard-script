@@ -1005,15 +1005,19 @@ elif st.session_state.stage == "quiz":
         elif st.session_state.feedback_type == "error":
             st.error(st.session_state.feedback)
 
+        import streamlit.components.v1 as components
+
+        next_button_key = (
+            f"next_button_{words_done}_{st.session_state.attempts}"
+        )
+
         st.button(
             "Next",
-            key=f"next_button_{words_done}_{st.session_state.attempts}",
+            key=next_button_key,
             type="primary",
             use_container_width=True,
             on_click=next_word,
         )
-
-        import streamlit.components.v1 as components
 
         components.html(
             """
@@ -1021,20 +1025,24 @@ elif st.session_state.stage == "quiz":
             const doc = window.parent.document;
 
             if (!doc._flashcardEnterHandler) {
+
                 doc._flashcardEnterHandler = function(event) {
+
                     if (event.key !== "Enter") return;
 
-                    const nextButton = doc.querySelector(
-                        'button[kind="primary"]'
+                    const buttons = Array.from(
+                        doc.querySelectorAll('button')
                     );
 
-                    if (nextButton &&
-                        nextButton.innerText.trim() === "Next") {
+                    const nextButton = buttons.find(button =>
+                        button.innerText.trim() === "Next"
+                    );
 
-                        event.preventDefault();
-                        event.stopPropagation();
-                        nextButton.click();
-                    }
+                    if (!nextButton) return;
+
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    nextButton.click();
                 };
 
                 doc.addEventListener(
