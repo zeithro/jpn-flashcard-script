@@ -833,9 +833,14 @@ elif st.session_state.stage == "quiz":
         elif st.session_state.feedback_type == "error":
             st.error(st.session_state.feedback)
 
-        if st.button("Next", type="primary", use_container_width=True):
-            next_word()
-            st.rerun()
+        with st.form(key=f"next_form_{words_done}", clear_on_submit=True):
+            st.text_input(
+                "Press Enter to continue, or click Next:",
+                key=f"next_input_{words_done}"
+            )
+            if st.form_submit_button("Next", type="primary", use_container_width=True):
+                next_word()
+                st.rerun()
 
 elif st.session_state.stage == "finished":
     st.title("Session complete")
